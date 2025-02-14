@@ -1,13 +1,44 @@
 package com.project;
 
-public class MainApp{
-    public static void mainapp(String[] args){
-        Database.createTable();
-        Database.addMenuItem("Fried Rice", 50);
-        Database.addMenuItem("Pad Kaprao", 45);
-        Database.getMenuItems();
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.stage.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+
+public class MainApp extends Application{
+    private static final String ADMIN_USERNAME = "admin";
+    private static final String ADMIN_PASSWORD = "pass123";
+    public static void main(String[] args){
+        launch(args);
+    }
+    @Override
+    public void start(Stage primaryStage){
+        primaryStage.setTitle("APP");
+
+        Label userNameLabel = new Label("Username: ");
+        Label passwordNamLabel = new Label("Password: ");
+
+        TextField userNameField = new TextField();
+        PasswordField passwordField = new PasswordField();
+
+        Label resultLabel = new Label();
+
+        Button loginButton = new Button("Login");
+
+        loginButton.setOnAction(e -> {
+            String enterUserName = userNameField.getText();
+            String enterpassword = passwordField.getText();
+
+            resultLabel.setText((enterUserName.equals(ADMIN_USERNAME) && enterpassword.equals(ADMIN_PASSWORD)) ? "Success" : "Login fail");
+            }
+        );
+
+            HBox userNameBox = new HBox(userNameLabel,userNameField);
+            userNameBox.setSpacing(5);
+            userNameBox.setAlignment(Pos.CENTER);
 
     }
-    
 }
     
