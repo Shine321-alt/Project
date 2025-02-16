@@ -18,7 +18,7 @@ public class MainApp extends Application{
         primaryStage.setTitle("APP");
 
         Label userNameLabel = new Label("Username: ");
-        Label passwordNamLabel = new Label("Password: ");
+        Label passwordLabel = new Label("Password: ");
 
         TextField userNameField = new TextField();
         PasswordField passwordField = new PasswordField();
@@ -35,10 +35,22 @@ public class MainApp extends Application{
             }
         );
 
-            HBox userNameBox = new HBox(userNameLabel,userNameField);
-            userNameBox.setSpacing(5);
-            userNameBox.setAlignment(Pos.CENTER);
+        HBox userNameBox = new HBox(userNameLabel,userNameField);
+        userNameBox.setSpacing(5);
+        userNameBox.setAlignment(Pos.CENTER);
+            
+        HBox passwordBox = new HBox(passwordLabel,passwordField);
+        passwordBox.setSpacing(5);
+        passwordBox.setAlignment(Pos.CENTER);
 
+        HBox loginButtonBox = new HBox(loginButton);
+        loginButtonBox.setAlignment(Pos.CENTER);
+
+        VBox root = new VBox(20);
+        root.getChildren().addAll(resultLabel,userNameBox,passwordBox,loginButtonBox);
+        Scene scene = new Scene(root,600,400);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
     
