@@ -66,6 +66,10 @@
           <version>0.0.8</version>
           <configuration>
             <mainClass>com.project.MainApp</mainClass>
+            <modules>
+              <module>javafx.controls</module>
+              <module>javafx.fxml</module>
+            </modules>
           </configuration>
           </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
