@@ -1,7 +1,6 @@
 package com.project;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.stage.*;
