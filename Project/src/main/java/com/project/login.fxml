@@ -3,33 +3,50 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane layoutX="300.0" prefHeight="400.0" prefWidth="300.0">
+            <AnchorPane fx:id="registerForm" prefHeight="400.0" prefWidth="300.0">
+               <children>
+                  <Label layoutX="25.0" layoutY="40.0" prefHeight="40.0" prefWidth="160.0" text="Register Account" textFill="#3e2723" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="registerUser" layoutX="40.0" layoutY="110.0" prefHeight="30.0" prefWidth="220.0" promptText="Username" />
+                  <TextField fx:id="registerPassword" layoutX="40.0" layoutY="160.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" />
+                  <Button fx:id="signUpBotton" layoutX="95.0" layoutY="327.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Sign Up" />
+                  <Hyperlink layoutX="40.0" layoutY="297.0" text="Forgot Password ?" />
+                  <ComboBox fx:id="question" layoutX="40.0" layoutY="200.0" prefWidth="150.0" promptText="Question" />
+                  <TextField fx:id="answer" layoutX="40.0" layoutY="237.0" prefHeight="30.0" prefWidth="220.0" promptText="Answer" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="loginForm" layoutX="300.0" prefHeight="400.0" prefWidth="300.0">
                <children>
                   <Label layoutX="25.0" layoutY="40.0" prefHeight="40.0" prefWidth="140.0" text="Login Account" textFill="#3e2723" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="37.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="40.0" layoutY="110.0" prefHeight="30.0" prefWidth="220.0" promptText="Username" />
-                  <TextField layoutX="40.0" layoutY="160.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" />
-                  <Button layoutX="95.0" layoutY="243.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Login" />
+                  <TextField fx:id="textFieldUsername" layoutX="40.0" layoutY="110.0" prefHeight="30.0" prefWidth="220.0" promptText="Username" />
+                  <Button fx:id="loginBotton" layoutX="95.0" layoutY="243.0" mnemonicParsing="false" onAction="#loginBotton" prefHeight="30.0" prefWidth="110.0" text="Login" />
                   <CheckBox layoutX="40.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Owner" />
                   <CheckBox layoutX="40.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Cashier" />
-                  <Hyperlink layoutX="40.0" layoutY="213.0" text="Forgot Password ?" />
+                  <Hyperlink fx:id="HyperlinkForgotPassword" layoutX="40.0" layoutY="213.0" text="Forgot Password ?" />
+                  <PasswordField fx:id="passwordfield" layoutX="40.0" layoutY="160.0" prefHeight="30.0" prefWidth="220.0" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="400.0" prefWidth="300.0" styleClass="gradient">
+            <AnchorPane fx:id="createForm" prefHeight="400.0" prefWidth="300.0" styleClass="gradient">
                <children>
                   <Label layoutX="38.0" layoutY="160.0" prefHeight="40.0" prefWidth="225.0" text="Restaurant Management" textFill="WHITE">
                      <font>
@@ -46,7 +63,8 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Button layoutX="51.0" layoutY="320.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Create new account" />
+                  <Button fx:id="createNewAccount" layoutX="51.0" layoutY="320.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="200.0" text="Create new account" />
+                  <Button fx:id="buttonAlready" layoutX="51.0" layoutY="320.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="200.0" text="Already have an account" visible="false" />
                </children>
                <stylesheets>
                   <URL value="@../LoginDesign.css" />
