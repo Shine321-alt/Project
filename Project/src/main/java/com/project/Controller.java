@@ -62,7 +62,7 @@ public class Controller {
     private TextField textFieldUsername;
 
     private Alert alert;
-    
+    // ฟังค์ชั่น loginBotton คือ กด login แล้วจะเด้งข้อความตามโค้ดที่ว่างเปล่าหรือใส่โค้ดผิด ถ้าถูกก็ย้ายไปหน้า lobby แต่ยังไม่ได้ทำ controllerlobby
     public void loginBotton(){
         if(textFieldUsername.getText().isEmpty() || passwordfield.getText().isEmpty()){
             alert = new Alert(AlertType.ERROR);
@@ -86,7 +86,7 @@ public class Controller {
             }
         }
     }
-
+    //ฟังค์ชั่นนี้เป็นการ สไลด์ หน้าจอตอนกดปุ่ม create account แต่เดี๋ยวจะย้ายฟังค์ชั่นนี้ไปไว้ตอนหลัง login admin ให้ create พนักงานได้อย่างเดียว
     public void switchForm(ActionEvent event){
         
         TranslateTransition slider = new TranslateTransition();
