@@ -77,9 +77,10 @@
 - ต้นแบบของระบบ (Prototype)
 เพื่อให้การพัฒนาโครงงานเป็นไปตามแผนที่กำหนด เราได้ทำการออกแบบ ต้นแบบ UI (Prototype) ของระบบจัดการร้านอาหารโดยใช้ Figma (หรือซอฟต์แวร์ออกแบบอื่นๆ) ซึ่งแสดงให้เห็นถึงโครงสร้างหน้าจอของระบบ เช่น
 หน้าหลัก (Main Menu) – แสดงเมนูอาหาร และตัวเลือกสำหรับพนักงาน
-หน้าสั่งอาหาร (Order Page) – ให้ลูกค้าสามารถเลือกเมนูและเพิ่มลงในออเดอร์
 หน้าการจัดการเมนู (Menu Management) – สำหรับเพิ่ม, แก้ไข หรือ ลบรายการอาหาร 
 หน้ารายงานยอดขาย (Sales Report) – แสดงยอดขายและกำไรของร้าน
 https://www.figma.com
 - JavaFX Documentation: [https://openjfx.io/](https://openjfx.io/)
+- H2 tutorial: https://www.tutorialspoint.com/h2_database/index.htm
+- JavaFX FXML: https://jenkov.com/tutorials/javafx/fxml.html
 
