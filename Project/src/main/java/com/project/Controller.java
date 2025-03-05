@@ -4,20 +4,21 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
 
 
 public class Controller {
     String userAdmin = "Shine";
     String passwordAdmin = "123";
+    String userCashier = "Cashier";
+    String passwordCashier = "abc";
 
     @FXML
     private Hyperlink HyperlinkForgotPassword;
