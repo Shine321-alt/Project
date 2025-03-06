@@ -1,0 +1,57 @@
+.bg-custom {
+    -fx-background-color: #f3f2e1; 
+}
+.bgsmall-custom{
+    -fx-background-color: #e0e0e0;
+}
+.button-custom {
+    -fx-background-color: #949090; /*เปลี่ยนสีตามที่ต้องการ*/ 
+    -fx-text-fill: rgb(0, 0, 0); /*สีข้อความ*/
+}
+.primary-background{
+    -fx-background-color: #F67800;
+    -fx-text-fill: rgb(255, 255, 255);
+}
+.scecound-background{
+    -fx-background-color: #FBF9F6;
+    -fx-text-fill: rgb(0, 0, 0);
+}
+.label-custom {
+    -fx-font-size: 15px; /* ขนาดตัวอักษร */
+    -fx-font-family: "Calibri"; /* ชื่อฟอนต์ */
+    -fx-font-weight: bold; /* ตัวหนา */
+}
+.white-card{
+    -fx-background-color: #ffff;
+    -fx-background-radius: 20;
+}
+.label1-custom {
+    -fx-font-size: 35px; /* ขนาดตัวอักษร */
+    -fx-font-family: "Calibri"; /* ชื่อฟอนต์ */
+    -fx-font-weight: bold; /* ตัวหนา */
+}
+.label2-custom {
+    -fx-font-size: 20px; /* ขนาดตัวอักษร */
+    -fx-font-family: "Calibri"; /* ชื่อฟอนต์ */
+    -fx-font-weight: bold; /* ตัวหนา */
+}
+.white2-card{
+    -fx-background-color: #ffff;
+    -fx-background-radius: 30;
+}
+.buttom-bar-background{
+    -fx-background-color: #ffff;
+    -fx-border-style: hidden hidden solid hidden;
+}
+.right-bar-background{
+    -fx-background-color: #ffff;
+    -fx-border-style: hidden solid hidden hidden;
+}
+.left-bar-background{
+    -fx-background-color: #ffff;
+    -fx-border-style: hidden hidden hidden solid;
+}
+.buttonsend-custom {
+    -fx-background-color: #84d84c; /*เปลี่ยนสีตามที่ต้องการ*/ 
+    -fx-text-fill: rgb(0, 0, 0); /*สีข้อความ*/
+}
