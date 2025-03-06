@@ -53,6 +53,12 @@ public class Controller {
     private TextField registerPassword;
 
     @FXML
+    private TextField UseradminRegister;
+    
+    @FXML
+    private TextField passWAdminRegister;
+    
+    @FXML
     private TextField registerUser;
 
     @FXML
