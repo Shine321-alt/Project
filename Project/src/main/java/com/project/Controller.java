@@ -189,9 +189,7 @@ public class Controller {
 
     private Alert alert;
 
-    // ฟังค์ชั่น loginBotton คือ กด login
-    // แล้วจะเด้งข้อความตามโค้ดที่ว่างเปล่าหรือใส่โค้ดผิด ถ้าถูกก็ย้ายไปหน้า lobby
-    // แต่ยังไม่ได้ทำ controllerlobby
+
     public void loginBotton() {
         if (textFieldUsername.getText().isEmpty() || passwordfield.getText().isEmpty()) {
             alert = new Alert(AlertType.ERROR);
