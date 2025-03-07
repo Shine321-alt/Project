@@ -13,6 +13,7 @@ public class DatabaseConection {
     public static Connection gC(){
         try{
             return DriverManager.getConnection(JDBC_URL, user, password);
+            
         }catch(SQLException e){
             e.printStackTrace();
             return null;

@@ -14,12 +14,12 @@ import javafx.fxml.FXMLLoader;
 
 public class MainApp extends Application{
     public static void main(String[] args){      
+        String[] Admin = {"Shine","123","What is your favorite Color?","RED","ADMIN"};
 
         try(Connection con = DatabaseConection.gC()){
         if (con != null) {
             System.out.println("Database connected successfully!");
-            DatabaseForUser.getUser(con);
-
+            DatabaseForUser.getInformation(con);
         } else {
             System.out.println("Failed to connect to database.");
         }
