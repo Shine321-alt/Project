@@ -9,6 +9,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,6 +19,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -32,7 +36,7 @@ public class Controller {
     private Button buttonAlready;
 
     @FXML
-    private Button buttonLogin;
+    private Button loginBotton;
 
     @FXML
     private AnchorPane createForm;
@@ -192,7 +196,7 @@ public class Controller {
     // ฟังค์ชั่น loginBotton คือ กด login
     // แล้วจะเด้งข้อความตามโค้ดที่ว่างเปล่าหรือใส่โค้ดผิด ถ้าถูกก็ย้ายไปหน้า lobby
     // แต่ยังไม่ได้ทำ controllerlobby
-    public void loginBotton() {
+    public void buttonLogin() {
         if (textFieldUsername.getText().isEmpty() || passwordfield.getText().isEmpty()) {
             alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error Message");
@@ -219,6 +223,18 @@ public class Controller {
                 alert.setHeaderText(null);
                 alert.setContentText("Login success!!");
                 alert.showAndWait();
+
+                Parent root = FXMLLoader.load(getClass().getResource("ControllerAdmin.fxml"));
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.setTitle("Management System");
+                stage.setMinHeight(800);
+                stage.setMinWidth(1280);
+                stage.setScene(scene);
+                stage.show();
+                
+                loginBotton.getScene().getWindow().hide();
+
             } else {
                 alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error Message");
