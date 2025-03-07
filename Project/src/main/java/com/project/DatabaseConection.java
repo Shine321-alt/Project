@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConection {
 
-    private static final String JDBC_URL = "jdbc:h2:file:C:/Users/Sh/Project/Project/database/database;AUTO_SERVER=TRUE";
+    private static final String JDBC_URL = "jdbc:h2:file:./database/database;AUTO_SERVER=TRUE";
     private static final String user = "Admin";
     private static final String password = "Admin123";
 
