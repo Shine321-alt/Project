@@ -75,7 +75,7 @@
                                        </VBox.margin>
                                     </ImageView>
                                     <Label text="Burger" />
-                                    <Button fx:id="OrderBotton" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
+                                    <Button fx:id="Order1" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets top="5.0" />
                                        </VBox.margin>
@@ -109,7 +109,7 @@
                                        </VBox.margin>
                                     </ImageView>
                                     <Label text="Burger" />
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
+                                    <Button fx:id="Order2" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets top="5.0" />
                                        </VBox.margin>
@@ -143,76 +143,7 @@
                                        </VBox.margin>
                                     </ImageView>
                                     <Label text="Burger" />
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
-                                 <children>
-                                    <ImageView fitHeight="140.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/l-intro-1661785817.jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Burger" />
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" />
-                                    <ImageView fitHeight="140.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/l-intro-1661785817.jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Burger" />
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
+                                    <Button fx:id="Order3" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets top="5.0" />
                                        </VBox.margin>
@@ -285,7 +216,7 @@
                                        </VBox.margin>
                                     </ImageView>
                                     <Label text="Burger" />
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
+                                    <Button fx:id="Drink1" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets top="5.0" />
                                        </VBox.margin>
@@ -319,7 +250,7 @@
                                        </VBox.margin>
                                     </ImageView>
                                     <Label text="Burger" />
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
+                                    <Button fx:id="Drink2" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets top="5.0" />
                                        </VBox.margin>
@@ -353,75 +284,7 @@
                                        </VBox.margin>
                                     </ImageView>
                                     <Label text="Burger" />
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
-                                 <children>
-                                    <ImageView fitHeight="140.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/l-intro-1661785817.jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Burger" />
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
-                                 <children>
-                                    <ImageView fitHeight="140.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/l-intro-1661785817.jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Burger" />
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
+                                    <Button fx:id="Drink3" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="Order" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets top="5.0" />
                                        </VBox.margin>
@@ -479,6 +342,16 @@
                                     <String fx:value="label2-custom" />
                                     <String fx:value="bgsmall-custom" />
                                  </styleClass></Button>
+                              <Label layoutX="20.0" layoutY="14.0" text="Total :">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="TotalPrice" layoutX="164.0" layoutY="14.0" text="-">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>
