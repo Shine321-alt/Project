@@ -58,3 +58,7 @@
 .bgConfirm-custom{
     -fx-background-color: #ecf0b3;
 }
+.largewhite-card{
+    -fx-background-color: #ffff;
+    -fx-background-radius: 40;
+}
