@@ -1,5 +1,6 @@
 package com.project;
 
+
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -87,6 +88,7 @@ public class Controller {
             }
         }
     }
+    
     //ฟังค์ชั่นนี้เป็นการ สไลด์ หน้าจอตอนกดปุ่ม create account แต่เดี๋ยวจะย้ายฟังค์ชั่นนี้ไปไว้ตอนหลัง login admin ให้ create พนักงานได้อย่างเดียว d
     public void switchForm(ActionEvent event){
         
