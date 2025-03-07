@@ -16,7 +16,7 @@
     <maven.compiler.release>21</maven.compiler.release>
   </properties>
 
-  <dependencyManagement>
+   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>org.junit</groupId>
@@ -30,10 +30,9 @@
 
   <dependencies>
     <dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter-api</artifactId>
-    <version>5.9.2</version>
-    <scope>test</scope>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -53,7 +52,6 @@
         <artifactId>javafx-fxml</artifactId>
         <version>21</version>
     </dependency>
-    <!-- Optionally: parameterized tests support -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
@@ -69,18 +67,6 @@
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.4.0</version>
         </plugin>
-        <plugin>
-          <groupId>org.openjfx</groupId>
-          <artifactId>javafx-maven-plugin</artifactId>
-          <version>0.0.8</version>
-          <configuration>
-            <mainClass>com.project.MainApp</mainClass>
-            <modules>
-              <module>javafx.controls</module>
-              <module>javafx.fxml</module>
-            </modules>
-          </configuration>
-          </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
@@ -117,5 +103,19 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.8</version>
+        <configuration>
+          <mainClass>com.project.MainApp</mainClass>
+          <modules>
+            <module>javafx.controls</module>
+            <module>javafx.fxml</module>
+          </modules>
+        </configuration>
+        </plugin>
+    </plugins>
   </build>
 </project>
