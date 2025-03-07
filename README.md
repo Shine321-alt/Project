@@ -81,6 +81,6 @@
 หน้ารายงานยอดขาย (Sales Report) – แสดงยอดขายและกำไรของร้าน
 https://www.figma.com
 - JavaFX Documentation: [https://openjfx.io/](https://openjfx.io/)
-- H2 tutorial: https://www.tutorialspoint.com/h2_database/index.htm
+- H2 tutorial,JDBC Connection: https://www.tutorialspoint.com/h2_database/index.htm
 - JavaFX FXML: https://jenkov.com/tutorials/javafx/fxml.html
-
+- JDBC tutorial : https://www.geeksforgeeks.org/introduction-to-jdbc/

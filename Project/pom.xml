@@ -34,11 +34,19 @@
       <artifactId>junit-jupiter-api</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>2.2.224</version>  <!-- ตรวจสอบเวอร์ชันล่าสุดที่เว็บไซต์ -->
+    </dependency>
+
     <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-controls</artifactId>
         <version>21</version>
     </dependency>
+    
     <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-fxml</artifactId>
