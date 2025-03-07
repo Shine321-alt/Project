@@ -122,4 +122,17 @@ public class DatabaseForUser {
         }
         return false;
     }
+    public static boolean checkLogin(Connection con, String username, String password) {
+        String sql = "SELECT * FROM EMPLOYEE WHERE USERNAME = ? AND PASSWORD = ?";
+        try (PreparedStatement ppsm = con.prepareStatement(sql)) {
+            ppsm.setString(1, username);
+            ppsm.setString(2, password);
+            try (ResultSet rs = ppsm.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

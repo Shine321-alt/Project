@@ -21,8 +21,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 
 public class Controller {
-    String userAdmin = "Shine";
-    String passwordAdmin = "123";
 
     @FXML
     private Hyperlink HyperlinkForgotPassword;
@@ -215,20 +213,7 @@ public class Controller {
                 return;
             }
 
-            String dbUser = DatabaseForUser.getUser(con, 1);
-            String dbPassword = DatabaseForUser.getPassword(con, 1);
-
-            if (dbUser == null || dbPassword == null) {
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("User data not found!");
-                alert.showAndWait();
-                return;
-            }
-
-            if (textFieldUsername.getText().equals(dbUser) &&
-                    passwordfield.getText().equals(dbPassword)) {
+            if (DatabaseForUser.checkLogin(con, textFieldUsername.getText(),passwordfield.getText())) {
                 alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information Message");
                 alert.setHeaderText(null);
