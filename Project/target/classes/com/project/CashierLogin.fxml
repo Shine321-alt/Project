@@ -61,7 +61,7 @@
                   <ListView prefHeight="200.0" prefWidth="200.0" />
                </children>
             </VBox>
-            <AnchorPane layoutX="261.0" layoutY="-18.0" prefHeight="824.0" prefWidth="1025.0" style="-fx-background-color: f3f2e1;">
+            <AnchorPane layoutX="261.0" layoutY="-18.0" prefHeight="816.0" prefWidth="1028.0" style="-fx-background-color: f3f2e1;">
                <children>
                   <ScrollPane layoutX="20.0" layoutY="163.0" prefHeight="209.0" prefWidth="653.0" styleClass="bg-custom" stylesheets="@AllStylas.css">
                      <content>
@@ -69,7 +69,7 @@
                            <children>
                               <VBox fx:id="menu1" alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
                                  <children>
-                                    <ImageView fitHeight="140.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="119.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../recourse/l-intro-1661785817.jpg" />
                                        </image>
