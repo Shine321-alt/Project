@@ -3,7 +3,7 @@ package com.project;
 import java.sql.*;
 
 import javax.management.relation.RoleResult;
-//USERS
+
 public class DatabaseForUser {
 
     public static void createTable(Connection con){
@@ -18,7 +18,7 @@ public class DatabaseForUser {
     }
 
     public static void insert(Connection con, String userName, String password, String question, String answer, String employee) {
-        // อัพเดทคำสั่ง SQL ให้ตรงกับโครงสร้างตาราง
+
         String sql = "INSERT INTO EMPLOYEE (USERNAME, PASSWORD, QUESTION, ANSWER, EMPLOYEE) VALUES (?,?,?,?,?)";
         try(PreparedStatement ppsm = con.prepareStatement(sql)){
             ppsm.setString(1, userName);
