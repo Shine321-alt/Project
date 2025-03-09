@@ -19,9 +19,6 @@ public class MainApp extends Application{
         if (con != null) {
             System.out.println("Database connected successfully!");
             DatabaseForMenu.createTable(con);
-            String image = "/com/project/AdobeStock_316904355.jpeg";
-            java.sql.Date sqlDate = java.sql.Date.valueOf("2023-03-20");
-            DatabaseForMenu.updateMenu(con, 1, "123", "shine", "FOOD", 59, 123.2, "Available", image, sqlDate);
             DatabaseForMenu.getInformation(con);
         } else {
             System.out.println("Failed to connect to database.");

@@ -14,6 +14,8 @@ import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import org.h2.engine.Database;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -138,6 +140,106 @@ public class ControllerAdmin implements Initializable{
         statusProduct.getSelectionModel().clearSelection();
         inventoryImage.setImage(null);
         data.path = null;
+    }
+
+    public void inventoryUpdateBtn(){
+        if(idProduct.getText().isEmpty() || productName.getText().isEmpty()
+        || stockProduct.getText().isEmpty() || priceProduct.getText().isEmpty() 
+        || typeProduct.getSelectionModel().getSelectedItem() == null 
+        || statusProduct.getSelectionModel().getSelectedItem() == null
+        || data.path == null){
+
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please fill all the fields");
+            alert.showAndWait();
+            return;
+        }else{
+            try(Connection con = DatabaseConection.gC()){
+                Double price = Double.parseDouble(priceProduct.getText());
+                Integer stock = Integer.parseInt(stockProduct.getText());
+
+                if(!DatabaseForMenu.checkProduct(con, idProduct.getText())){
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("ERROR MESSAGE");
+                    alert.setHeaderText(null);
+                    alert.setContentText(idProduct.getText() + " does not exist");  // แก้ข้อความให้เหมาะสม
+                    alert.showAndWait();
+                    return;
+                }
+                else if(price <= 0 || stock <= 0){
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("ERROR MESSAGE");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Price and Stock must be greater than 0");
+                    alert.showAndWait();
+                    return;
+                }else{
+                    DatabaseForMenu.updateMenu(con, 
+                    idProduct.getText(),
+                    productName.getText(),
+                    typeProduct.getSelectionModel().getSelectedItem(),
+                    stock,
+                    price,
+                    statusProduct.getSelectionModel().getSelectedItem(),
+                    data.path,
+                    new java.sql.Date(System.currentTimeMillis()));
+                
+                alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("SUCCESS MESSAGE");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully updated");
+                alert.showAndWait();
+
+                inventoryShowData();
+                clearForm();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void inventoryDeleteBtn(){
+        if(idProduct.getText().isEmpty()){
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please fill the Product ID");
+            alert.showAndWait();
+            return;
+        }
+        
+        try(Connection con = DatabaseConection.gC()){
+            if(!DatabaseForMenu.checkProduct(con, idProduct.getText())){
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("ERROR MESSAGE");
+            alert.setHeaderText(null);
+            alert.setContentText(idProduct.getText()+" does not exist");
+            alert.showAndWait();
+            return;
+            }
+
+            alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to delete " + idProduct.getText() + "?");
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if(option.get().equals(ButtonType.OK)) {
+            DatabaseForMenu.deleteMenu(con, idProduct.getText());
+                
+            alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("SUCCESS MESSAGE");
+            alert.setHeaderText(null);
+            alert.setContentText("Successfully deleted");
+            alert.showAndWait();
+
+            inventoryShowData();
+            clearForm();
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+         } 
     }
 
     public void inventoryAddBtn(){

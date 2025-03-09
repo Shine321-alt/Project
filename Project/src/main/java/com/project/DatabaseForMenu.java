@@ -51,34 +51,34 @@ public class DatabaseForMenu {
         }catch(SQLException e){e.printStackTrace();}
     }
 
-    public static void updateMenu(Connection conn,int ID ,String PRODUCT_ID 
+    public static void updateMenu(Connection conn,String PRODUCT_ID 
                                     ,String PRODUCT_NAME ,String type,int STOCK 
                                     ,double PRICE ,String STATUS 
                                     ,String IMAGE ,Date DATE){
                                         
-        String sql = "UPDATE MENU SET PRODUCT_ID = ?, PRODUCT_NAME = ?, PRODUCT_TYPE = ?, " +
-                    "STOCK = ?, PRICE = ?, STATUS = ?, IMAGE = ?, DATE = ? WHERE ID = ?";
+        String sql = "UPDATE MENU SET PRODUCT_NAME = ?, PRODUCT_TYPE = ?, " +
+                    "STOCK = ?, PRICE = ?, STATUS = ?, IMAGE = ?, DATE = ? WHERE PRODUCT_ID = ?";
 
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-            pstm.setString(1, PRODUCT_ID);
-            pstm.setString(2, PRODUCT_NAME);
-            pstm.setString(3, type);
-            pstm.setInt(4, STOCK);
-            pstm.setDouble(5, PRICE);
-            pstm.setString(6, STATUS);
-            pstm.setString(7, IMAGE);
-            pstm.setDate(8, DATE);
-            pstm.setInt(9, ID);
+            pstm.setString(1, PRODUCT_NAME);
+            pstm.setString(2, type);
+            pstm.setInt(3, STOCK);
+            pstm.setDouble(4, PRICE);
+            pstm.setString(5, STATUS);
+            pstm.setString(6, IMAGE);
+            pstm.setDate(7, DATE);
+            pstm.setString(8, PRODUCT_ID);
+            pstm.executeUpdate();
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-        public static void deleteMenu(Connection con , int id){
-            String sql = "DELETE FROM MENU WHERE ID = ?";
+        public static void deleteMenu(Connection con , String productId) {
+            String sql = "DELETE FROM MENU WHERE PRODUCT_ID = ?";
             try(PreparedStatement pstm = con.prepareStatement(sql)){
-                pstm.setInt(1, id);
+                pstm.setString(1, productId);
                 pstm.executeUpdate();
             }catch(SQLException e){e.printStackTrace();}
         }

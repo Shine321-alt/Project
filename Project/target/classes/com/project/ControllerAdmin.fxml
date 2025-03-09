@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ControllerAdmin">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ControllerAdmin">
    <children>
       <AnchorPane fx:id="mainForm" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -152,7 +152,7 @@
                                     <String fx:value="radiuse" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="inventoryTable" layoutX="25.0" layoutY="15.0" prefHeight="370.0" prefWidth="950.0" styleClass="table-viwe" stylesheets="@AdminDesigh.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
+                                    <TableView fx:id="inventoryTable" layoutX="25.0" layoutY="15.0" onMouseClicked="#inventorySelectData" prefHeight="370.0" prefWidth="950.0" styleClass="table-viwe" stylesheets="@AdminDesigh.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
                                       <columns>
                                         <TableColumn fx:id="inventoryCol_IdProduct" prefWidth="125.0" text="ID PRODUCT" />
                                         <TableColumn fx:id="inventoryCol_ProductName" prefWidth="129.0" text="PRODUCT NAME" />
@@ -237,9 +237,9 @@
                                        </font>
                                     </Button>
                                     <Button fx:id="add" layoutX="100.0" layoutY="250.0" mnemonicParsing="false" onAction="#inventoryAddBtn" prefHeight="35.0" prefWidth="100.0" styleClass="btn" stylesheets="@AdminDesigh.css" text="ADD" AnchorPane.bottomAnchor="63.0" />
-                                    <Button fx:id="update" layoutX="250.0" layoutY="250.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" styleClass="btn" stylesheets="@AdminDesigh.css" text="UPDATE" AnchorPane.bottomAnchor="63.0" />
+                                    <Button fx:id="update" layoutX="250.0" layoutY="250.0" mnemonicParsing="false" onAction="#inventoryUpdateBtn" prefHeight="35.0" prefWidth="100.0" styleClass="btn" stylesheets="@AdminDesigh.css" text="UPDATE" AnchorPane.bottomAnchor="63.0" />
                                     <Button fx:id="clear" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="35.0" prefWidth="100.0" styleClass="btn" stylesheets="@AdminDesigh.css" text="CLEAR" AnchorPane.bottomAnchor="63.0" />
-                                    <Button fx:id="delete" layoutX="550.0" layoutY="250.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" styleClass="btn" stylesheets="@AdminDesigh.css" text="DELETE" AnchorPane.bottomAnchor="63.0" />
+                                    <Button fx:id="delete" layoutX="550.0" layoutY="250.0" mnemonicParsing="false" onAction="#inventoryDeleteBtn" prefHeight="35.0" prefWidth="100.0" styleClass="btn" stylesheets="@AdminDesigh.css" text="DELETE" AnchorPane.bottomAnchor="63.0" />
                                     <Label layoutX="471.0" layoutY="162.0" text="STATUS :">
                                        <font>
                                           <Font size="20.0" />
