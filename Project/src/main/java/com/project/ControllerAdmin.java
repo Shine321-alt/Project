@@ -353,7 +353,6 @@ public class ControllerAdmin implements Initializable{
             
         } catch (SQLException e) {
             e.printStackTrace();
-            // อาจจะเพิ่มการแจ้งเตือนผู้ใช้ด้วย Alert
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Database Error");
             alert.setContentText("Error loading inventory data: " + e.getMessage());

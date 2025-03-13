@@ -2,6 +2,7 @@ package com.project;
 
 import java.io.IOException;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,122 +10,61 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CashierLogin {
 
+ 
     @FXML
-    private Button Drink1;
-
-    @FXML
-    private Button Drink2;
+    private TableColumn<?, ?> ColumnPrice;
 
     @FXML
-    private Button Drink3;
+    private TableColumn<?, ?> ColumnProductName;
 
     @FXML
-    private Button LogutButtton;
+    private TableColumn<?, ?> ColumnQuantity;
 
     @FXML
-    private Button Order1;
+    private ScrollPane MenuScrollPane;
 
     @FXML
-    private Button Order2;
+    private Button logoutBtn;
 
     @FXML
-    private Button Order3;
+    private TextField menuAmount;
 
     @FXML
-    private Button confirmButton;
+    private Label menuChange;
 
     @FXML
-    private VBox menu1;
+    private GridPane menuGridPane;
 
     @FXML
-    private Label totalPriceLable;
-    
-    private double total = 0.00;
-
-
-    //ราคาสินค้า
-    private final double drink1Price = 25.00;
-    private final double drink2Price = 20.00;
-    private final double drink3Price = 15.00;
-    private final double food1Price = 40.00;
-    private final double food2Price = 60.00;
-    private final double food3Price = 120.00;
+    private TableView<?> menuTableView;
 
     @FXML
-    void addDrink1(ActionEvent event) {
-        total += drink1Price;
-        updateTotalPrice();
-
-    }
+    private Label menuTotal;
 
     @FXML
-    void addDrink2(ActionEvent event) {
-        total += drink2Price;
-        updateTotalPrice();
-
-    }
+    private Button payBtn;
 
     @FXML
-    void addDrink3(ActionEvent event) {
-        total += drink3Price;
-        updateTotalPrice();
-
-    }
+    private Button receiptBtn;
 
     @FXML
-    void addFood1(ActionEvent event) {
-        total += food1Price;
-        updateTotalPrice();
+    private Button removeBtn;
 
-    }
+    private ObservableList<ProductData> cardListData;
 
-    @FXML
-    void addFood2(ActionEvent event) {
-        total += food2Price;
-        updateTotalPrice();
-
-    }
-
-    @FXML
-    void addFood3(ActionEvent event) {
-        total += food3Price;
-        updateTotalPrice();
-
-    }
-    
-    private void updateTotalPrice(){
-        totalPriceLable.setText(String.format("Total: %.2f THB", total));
-    }
-
-    @FXML
-    void confirmOrder(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Order Confirmed");
-        alert.setHeaderText("Your order has been placed!");
-        alert.setContentText("Total amount: " + String.format("%.2f THB", total));
-        alert.showAndWait();
-
-        total = 0;
-        updateTotalPrice();
+    public ObservableList<ProductData> menuGetdata(){
+        return cardListData;
+    } 
 
 
-    }
-    @FXML
-    void logout(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-            Scene scene = new Scene(loader.load());
-            Stage stage = (Stage) LogutButtton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
 }

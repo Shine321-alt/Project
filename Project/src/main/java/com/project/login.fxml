@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -21,13 +21,13 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="registerUser" layoutX="40.0" layoutY="150.0" prefHeight="30.0" prefWidth="220.0" promptText="Username" />
-                  <PasswordField fx:id="registerPassword" layoutX="40.0" layoutY="190.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" />
+                  <TextField fx:id="registerUser" layoutX="40.0" layoutY="150.0" prefHeight="30.0" prefWidth="220.0" promptText="UsernameCashier" />
+                  <PasswordField fx:id="registerPassword" layoutX="40.0" layoutY="190.0" prefHeight="30.0" prefWidth="220.0" promptText="PasswordCashier" />
                   <Button fx:id="signUpBotton" layoutX="95.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Sign Up" />
                   <ComboBox fx:id="question" layoutX="40.0" layoutY="230.0" prefWidth="150.0" promptText="Question" />
                   <TextField fx:id="answer" layoutX="40.0" layoutY="265.0" prefHeight="30.0" prefWidth="220.0" promptText="Answer" />
-                  <TextField fx:id="UseradminRegister" layoutX="40.0" layoutY="77.0" prefHeight="30.0" prefWidth="220.0" promptText="Username" />
-                  <PasswordField fx:id="passWAdminRegister" layoutX="40.0" layoutY="114.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" />
+                  <TextField fx:id="UseradminRegister" layoutX="40.0" layoutY="77.0" prefHeight="30.0" prefWidth="220.0" promptText="UsernameAdmin" />
+                  <PasswordField fx:id="passWAdminRegister" layoutX="40.0" layoutY="114.0" prefHeight="30.0" prefWidth="220.0" promptText="PasswordAdmin" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="loginForm" layoutX="300.0" prefHeight="400.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">

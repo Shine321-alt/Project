@@ -18,8 +18,7 @@ public class MainApp extends Application{
         try(Connection con = DatabaseConection.gC()){
         if (con != null) {
             System.out.println("Database connected successfully!");
-            DatabaseForMenu.createTable(con);
-            DatabaseForMenu.getInformation(con);
+            DatabaseForUser.getInformation(con);
         } else {
             System.out.println("Failed to connect to database.");
         }

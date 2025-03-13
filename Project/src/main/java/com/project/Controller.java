@@ -216,6 +216,7 @@ public class Controller implements Initializable {
             }
 
             if (DatabaseForUser.checkLogin(con, textFieldUsername.getText(),passwordfield.getText())) {
+                if(DatabaseForUser.checkEmployeeType(con, textFieldUsername.getText())){
                 alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information Message");
                 alert.setHeaderText(null);
@@ -233,7 +234,22 @@ public class Controller implements Initializable {
                 
                 Stage currenStage = (Stage)loginBotton.getScene().getWindow();
                 currenStage.close();
-
+                }else{
+                    alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Login success!!");
+                    alert.showAndWait();
+    
+                    Parent root = FXMLLoader.load(getClass().getResource("CashierLogin.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    stage.setTitle("Menu");
+                    stage.setMinHeight(800);
+                    stage.setMinWidth(1280);
+                    stage.setScene(scene);
+                    stage.show();
+                }
             } else {
                 alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error Message");

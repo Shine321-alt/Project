@@ -29,6 +29,14 @@ public class ProductData {
         this.type = type;
     }
 
+    public ProductData(Integer id , String productId,String productName, Double productPrice){
+
+        this.id = id;
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+    }
+
     public Integer getId(){
         return id;
     }

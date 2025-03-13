@@ -2,8 +2,6 @@ package com.project;
 
 import java.sql.*;
 
-import javax.management.relation.RoleResult;
-
 public class DatabaseForUser {
 
     public static void createTable(Connection con){
@@ -33,7 +31,7 @@ public class DatabaseForUser {
         }catch(SQLException e){e.printStackTrace();}
     }
     public static void deleteUser(Connection con ,int id ){
-        String sql = "DELETE FROM USERS WHERE id = ?";
+        String sql = "DELETE FROM EMPLOYEE WHERE id = ?";
         try(PreparedStatement pstm = con.prepareStatement(sql)){
             pstm.setInt(1, id);
             int check = pstm.executeUpdate();
@@ -47,7 +45,7 @@ public class DatabaseForUser {
         }
     }
     public static void updateUser(Connection conn,int id ,String userName ,String password,String question,String answer ,String employee ){
-        String sql = "UPDATE USERS SET NAME = ?, QUESTION = ?, ANSWER = ? , EMAIL = ? , DATE = ? WHERE id = ?";
+        String sql = "UPDATE EMPLOYEE SET NAME = ?, QUESTION = ?, ANSWER = ? , EMAIL = ? , DATE = ? WHERE id = ?";
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setString(1, userName);
             pstm.setString(2, password);
@@ -78,6 +76,7 @@ public class DatabaseForUser {
             e.printStackTrace();
         }
     }
+
     public static String getUser(Connection con, int id){
         String sql = "SELECT USERNAME FROM EMPLOYEE WHERE ID = ?";
         try(PreparedStatement ppsm = con.prepareStatement(sql)){
@@ -93,6 +92,24 @@ public class DatabaseForUser {
             return null; 
         }
     }
+
+    public static boolean checkEmployeeType(Connection con, String userName) {
+        String sql = "SELECT EMPLOYEE FROM EMPLOYEE WHERE USERNAME = ?";
+        try (PreparedStatement ppsm = con.prepareStatement(sql)) {
+            ppsm.setString(1, userName);
+            try (ResultSet rs = ppsm.executeQuery()) {
+                if (rs.next()) {
+                    String employeeType = rs.getString("EMPLOYEE");
+                    return employeeType != null && employeeType.equalsIgnoreCase("ADMIN");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
     public static String getPassword(Connection con, int id){
         String sql = "SELECT PASSWORD FROM EMPLOYEE WHERE ID = ?";
         try(PreparedStatement ppsm = con.prepareStatement(sql)){
@@ -122,6 +139,7 @@ public class DatabaseForUser {
         }
         return false;
     }
+
     public static boolean checkLogin(Connection con, String username, String password) {
         String sql = "SELECT * FROM EMPLOYEE WHERE USERNAME = ? AND PASSWORD = ?";
         try (PreparedStatement ppsm = con.prepareStatement(sql)) {

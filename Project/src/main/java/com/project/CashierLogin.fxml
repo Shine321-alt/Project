@@ -1,347 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.CashierLogin">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="806.0" prefWidth="261.0" spacing="10.0" styleClass="right-bar-background" stylesheets="@AllStylas.css">
-               <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="159.0" prefWidth="261.0" stylesheets="@AllStylas.css">
+            <BorderPane layoutX="477.0" layoutY="260.0" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <AnchorPane prefHeight="800.0" prefWidth="258.0" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox prefHeight="35.0" prefWidth="261.0" />
-                        <ImageView fitHeight="95.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../recourse/png-transparent-human-with-circle-logo-national-cyber-security-alliance-organization-drupal-association-information-internet-icon-s-customers-free-miscellaneous-company-logo.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <Label text="Cashier" underline="true">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <HBox prefHeight="17.0" prefWidth="261.0" />
-                  <HBox alignment="TOP_CENTER" prefHeight="37.0" prefWidth="261.0">
-                     <children>
-                        <ImageView fitHeight="37.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../recourse/OIP.jpg" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="107.0" stylesheets="@AllStylas.css" text="Menu">
-                           <styleClass>
-                              <String fx:value="primary-background" />
-                              <String fx:value="label-custom" />
-                           </styleClass>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <ListView prefHeight="200.0" prefWidth="200.0" />
-               </children>
-            </VBox>
-            <AnchorPane layoutX="261.0" layoutY="-18.0" prefHeight="816.0" prefWidth="1028.0" style="-fx-background-color: f3f2e1;">
-               <children>
-                  <ScrollPane layoutX="20.0" layoutY="163.0" prefHeight="209.0" prefWidth="653.0" styleClass="bg-custom" stylesheets="@AllStylas.css">
-                     <content>
-                        <HBox prefHeight="197.0" prefWidth="843.0" spacing="10.0" style="-fx-background-color: f3f2e1;">
+                        <AnchorPane layoutY="222.0" prefHeight="800.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox fx:id="menu1" alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
+                              <AnchorPane prefHeight="98.0" prefWidth="258.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <ImageView fitHeight="119.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/l-intro-1661785817.jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Burger" />
-                                    <Button fx:id="Order1" mnemonicParsing="false" onAction="#addFood1" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="40" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
+                                    <Label contentDisplay="CENTER" layoutX="97.0" layoutY="31.0" prefHeight="36.0" prefWidth="64.0" text="MENU">
                                        <font>
-                                          <Font name="Calibri Bold" size="18.0" />
+                                          <Font size="20.0" />
                                        </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
+                                    </Label>
                                  </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
-                                 <children>
-                                    <ImageView fitHeight="106.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/OIP%20(2).jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Burger and fries" />
-                                    <Button fx:id="Order2" mnemonicParsing="false" onAction="#addFood2" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="60" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
-                                 <children>
-                                    <ImageView fitHeight="106.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/OIP%20(6).jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Pizza" />
-                                    <Button fx:id="Order3" mnemonicParsing="false" onAction="#addFood3" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="120" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </content>
-                  </ScrollPane>
-                  <ScrollPane layoutX="20.0" layoutY="446.0" prefHeight="209.0" prefWidth="653.0" styleClass="bg-custom" stylesheets="@AllStylas.css">
-                     <content>
-                        <HBox prefHeight="197.0" prefWidth="843.0" spacing="10.0" style="-fx-background-color: f3f2e1;">
-                           <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
-                                 <children>
-                                    <ImageView fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/OIP%20(3).jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Coca Cola" />
-                                    <Button fx:id="Drink1" mnemonicParsing="false" onAction="#addDrink1" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="25" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
-                                 <children>
-                                    <ImageView fitHeight="108.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/OIP%20(4).jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Orange Juice" />
-                                    <Button fx:id="Drink2" mnemonicParsing="false" onAction="#addDrink2" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="20" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
-                                 <children>
-                                    <ImageView fitHeight="99.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../recourse/OIP%20(5).jpg" />
-                                       </image>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Bottle of Water" />
-                                    <Button fx:id="Drink3" mnemonicParsing="false" onAction="#addDrink3" prefHeight="32.0" prefWidth="54.0" stylesheets="@AllStylas.css" text="15" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="primary-background" />
-                                          <String fx:value="label-custom" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </content>
-                  </ScrollPane>
-                  <AnchorPane layoutX="681.0" layoutY="14.0" prefHeight="806.0" prefWidth="342.0" styleClass="left-bar-background" stylesheets="@AllStylas.css">
-                     <children>
-                        <AnchorPane layoutX="4.0" layoutY="599.0" prefHeight="209.0" prefWidth="343.0" styleClass="bgConfirm-custom" stylesheets="@AllStylas.css">
-                           <children>
-                              <Button fx:id="confirmButton" layoutX="248.0" layoutY="158.0" mnemonicParsing="false" onAction="#confirmOrder" stylesheets="@AllStylas.css" text="Confirm">
-                                 <styleClass>
-                                    <String fx:value="label2-custom" />
-                                    <String fx:value="bgsmall-custom" />
-                                 </styleClass></Button>
-                              <Label layoutX="20.0" layoutY="14.0" text="Total :">
-                                 <font>
-                                    <Font name="Calibri Bold" size="39.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="totalPriceLable" layoutX="148.0" layoutY="15.0" text="0.00 THB">
-                                 <font>
-                                    <Font name="Calibri Bold" size="38.0" />
-                                 </font>
-                              </Label>
+                              </AnchorPane>
+                              <Button fx:id="logoutBtn" layoutX="93.0" layoutY="728.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" text="Sign out" AnchorPane.bottomAnchor="40.0" />
                            </children>
                         </AnchorPane>
-                        <ListView layoutX="28.0" layoutY="31.0" prefHeight="221.0" prefWidth="289.0" />
                      </children>
                   </AnchorPane>
-                  <Label layoutX="28.0" layoutY="119.0" stylesheets="@AllStylas.css" text="Food">
-                     <font>
-                        <Font name="Calibri Bold" size="38.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="32.0" layoutY="402.0" stylesheets="@AllStylas.css" text="Drink">
-                     <font>
-                        <Font name="Calibri Bold" size="38.0" />
-                     </font>
-                  </Label>
-                  <HBox layoutX="38.0" layoutY="39.0" prefHeight="37.0" prefWidth="501.0">
+               </left>
+               <center>
+                  <AnchorPane prefHeight="660.0" prefWidth="921.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../recourse/OIP%20(7).jpg" />
-                           </image>
-                        </ImageView>
-                        <TextField prefHeight="34.0" prefWidth="437.0" promptText="Search">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
+                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="800.0" prefWidth="775.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="12.0" layoutY="15.0" prefHeight="770.0" prefWidth="751.0" stylesheets="@AdminDesigh.css" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="23.0">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                    <String fx:value="radiuse" />
+                                 </styleClass>
+                                 <children>
+                                    <ScrollPane fx:id="MenuScrollPane" layoutX="13.0" layoutY="11.0" prefHeight="733.0" prefWidth="730.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="11.0">
+                                       <content>
+                                          <GridPane fx:id="menuGridPane" prefHeight="30.0" prefWidth="117.0">
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                          </GridPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
                      </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-            <Button fx:id="logoutButton" layoutX="14.0" layoutY="756.0" mnemonicParsing="false" onAction="#logout" stylesheets="@AllStylas.css" text="Logout">
-               <styleClass>
-                  <String fx:value="button-custom" />
-                  <String fx:value="label-custom" />
-               </styleClass>
-            </Button>
+                  </AnchorPane>
+               </center>
+               <right>
+                  <AnchorPane prefHeight="800.0" prefWidth="247.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="14.0" layoutY="77.0" prefHeight="800.0" prefWidth="247.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="10.0" layoutY="23.0" prefHeight="770.0" prefWidth="220.0" stylesheets="@AdminDesigh.css" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="23.0">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                    <String fx:value="radiuse" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="menuTableView" layoutX="2.0" layoutY="14.0" prefHeight="400.0" prefWidth="223.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="14.0">
+                                      <columns>
+                                        <TableColumn fx:id="ColumnProductName" prefWidth="105.0" text="Product Name" />
+                                        <TableColumn fx:id="ColumnQuantity" prefWidth="60.0" text="Quantity" />
+                                          <TableColumn fx:id="ColumnPrice" prefWidth="60.0" text="Price" />
+                                      </columns>
+                                    </TableView>
+                                    <Label layoutX="13.0" layoutY="425.0" text="Total: " AnchorPane.leftAnchor="13.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="menuTotal" layoutX="57.0" layoutY="425.0" text="0.0" AnchorPane.rightAnchor="149.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="459.0" prefHeight="25.0" prefWidth="67.0" text="Amount:" AnchorPane.leftAnchor="13.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="menuAmount" layoutX="80.0" layoutY="459.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="12.0" />
+                                    <Label layoutX="14.0" layoutY="493.0" text="Change: " AnchorPane.leftAnchor="14.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="menuChange" layoutX="78.0" layoutY="493.0" text="0.0" AnchorPane.rightAnchor="128.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="payBtn" layoutX="21.0" layoutY="526.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="175.0" stylesheets="@AdminDesigh.css" text="Pay" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="31.0">
+                                       <styleClass>
+                                          <String fx:value="nav-form" />
+                                          <String fx:value="white-text" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="removeBtn" layoutX="21.0" layoutY="578.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" stylesheets="@AdminDesigh.css" text="Remove" AnchorPane.leftAnchor="21.0">
+                                       <styleClass>
+                                          <String fx:value="white-text" />
+                                          <String fx:value="btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="receiptBtn" layoutX="124.0" layoutY="578.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" stylesheets="@AdminDesigh.css" text="Receipt" AnchorPane.rightAnchor="31.0">
+                                       <styleClass>
+                                          <String fx:value="white-text" />
+                                          <String fx:value="btn" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </right>
+            </BorderPane>
          </children>
       </AnchorPane>
    </children>
