@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -18,7 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class CashierLogin {
+public class CashierLogin implements Initializable{
 
  
     @FXML
@@ -65,6 +66,8 @@ public class CashierLogin {
     public ObservableList<ProductData> menuGetdata(){
         return cardListData;
     } 
-
-
+    
+    @Override
+    public void initialize(java.net.URL arg0, java.util.ResourceBundle arg1) {
+    }
 }
