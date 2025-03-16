@@ -350,9 +350,8 @@ public class CashierLogin implements Initializable{
                     // บันทึกใบเสร็จ
                     DatabaseForReceipt.insertReceipt(con, customerId, Controller.username, total);
                     DatabaseForReceipt.getReceiptId(con, customerId, Controller.username);
-
-                    // ลบข้อมูลในตะกร้า
-                    DatabaseForCustomer.deleteAllData(con);
+                    // ลบข้อมูลในตาราง CUSTOMER
+                    DatabaseForCustomer.deleteData(con, customerId);
 
                     con.commit();
                 } catch(Exception e) {

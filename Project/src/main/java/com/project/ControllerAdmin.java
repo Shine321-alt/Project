@@ -24,10 +24,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,6 +45,24 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class ControllerAdmin implements Initializable{
+    @FXML
+    private AreaChart<?, ?> dashboandChartIncome;
+
+    @FXML
+    private Label dashboandCustomer;
+
+    @FXML
+    private BarChart<?, ?> dashboandCustomerChart;
+
+    @FXML
+    private Label dashboandIncome;
+
+    @FXML
+    private Label dashboandSoldProducts;
+
+    @FXML
+    private Label dashboandTotalIncome;
+
     @FXML
     private Button add;
 
@@ -87,6 +109,21 @@ public class ControllerAdmin implements Initializable{
     private TableColumn<ProductData, String> inventoryCol_Type;
 
     @FXML
+    private TableColumn<CustomerData, Integer> columnCustomerId;
+
+    @FXML
+    private TableColumn<CustomerData, Date> columnDate;
+
+    @FXML
+    private TableColumn<CustomerData, String> columnEmployee;
+
+    @FXML
+    private TableColumn<CustomerData, Double> columnTotal;
+
+    @FXML
+    private TableView<CustomerData> tableviewCustomer;
+
+    @FXML
     private AnchorPane inventoryForm;
 
     @FXML
@@ -125,7 +162,6 @@ public class ControllerAdmin implements Initializable{
     @FXML
     private Button update;
 
-
     private Alert alert;
 
     private String[] typeList = {"Food","Drink"};
@@ -133,6 +169,7 @@ public class ControllerAdmin implements Initializable{
     private String[] statusList = {"Available","Unavailable"};
 
     private Image image;
+ 
 
     @FXML
     public void clearForm(){
@@ -144,6 +181,111 @@ public class ControllerAdmin implements Initializable{
         statusProduct.getSelectionModel().clearSelection();
         inventoryImage.setImage(null);
         data.path = null;
+    }
+
+    public void dashboandDisplayNc(){
+        String sql = "SELECT COUNT(CUSTOMER_ID) FROM RECEIPT";
+        try(Connection con = DatabaseConection.gC()){
+            try(PreparedStatement ppsm = con.prepareStatement(sql);
+                ResultSet rs = ppsm.executeQuery()){
+                    if(rs.next()){
+                        int n = rs.getInt(1);
+                        dashboandCustomer.setText(String.valueOf(n));
+                    }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Error loading customer count: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    public void dashboardDisplayTotalIncome() {
+        String sql = "SELECT SUM(TOTAL_AMOUNT) FROM RECEIPT";
+        try(Connection con = DatabaseConection.gC();
+            PreparedStatement ppsm = con.prepareStatement(sql);
+            ResultSet rs = ppsm.executeQuery()) {
+            
+            if(rs.next()) {
+                double total = rs.getDouble(1);
+                dashboandTotalIncome.setText(String.format("$%.2f", total));
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dashboardDisplayTodayIncome() {
+        String sql = "SELECT SUM(TOTAL_AMOUNT) FROM RECEIPT WHERE DATE = CURRENT_DATE()";
+        try(Connection con = DatabaseConection.gC();
+            PreparedStatement ppsm = con.prepareStatement(sql);
+            ResultSet rs = ppsm.executeQuery()) {
+            
+            if(rs.next()) {
+                double todayIncome = rs.getDouble(1);
+                dashboandIncome.setText(String.format("$%.2f", todayIncome));
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dashboandCustomerChart(){
+        String sql = "SELECT DATE, COUNT(CUSTOMER_ID) as customer_count FROM RECEIPT GROUP BY DATE ORDER BY DATE";
+        try(Connection con = DatabaseConection.gC();
+            PreparedStatement ppsm = con.prepareStatement(sql);
+            ResultSet rs = ppsm.executeQuery()){
+                
+                XYChart.Series chart = new XYChart.Series();
+                chart.setName("Customer Count");
+
+                while(rs.next()){
+                    chart.getData().add(new XYChart.Data<>(
+                        rs.getDate("DATE").toString(),
+                        rs.getInt("customer_count")
+                    ));
+                }
+
+                dashboandCustomerChart.getData().clear();
+                dashboandCustomerChart.getData().add(chart);
+                
+            }catch(SQLException e){
+                e.printStackTrace();
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error loading chart data: " + e.getMessage());
+                alert.showAndWait();
+            }
+    }
+
+    public void dashboandIncomeChart(){
+        String sql = "SELECT DATE, SUM(TOTAL_AMOUNT) as daily_income FROM RECEIPT GROUP BY DATE ORDER BY DATE";
+        try(Connection con = DatabaseConection.gC();
+            PreparedStatement ppsm = con.prepareStatement(sql);
+            ResultSet rs = ppsm.executeQuery()){
+                
+                XYChart.Series chart = new XYChart.Series();
+                chart.setName("Daily Income");
+
+                while(rs.next()){
+                    chart.getData().add(new XYChart.Data<>(
+                        rs.getDate("DATE").toString(),
+                        rs.getDouble("daily_income")
+                    ));
+                }
+
+                dashboandChartIncome.getData().clear();
+                dashboandChartIncome.getData().add(chart);
+                
+            }catch(SQLException e){
+                e.printStackTrace();
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error loading income chart data: " + e.getMessage());
+                alert.showAndWait();
+            }
     }
 
     public void switchForm(ActionEvent event){
@@ -325,7 +467,47 @@ public class ControllerAdmin implements Initializable{
         }
     }
 
-    
+    public ObservableList<CustomerData> customerList(){
+        String sql = "SELECT * FROM RECEIPT";
+        ObservableList<CustomerData> customerData = FXCollections.observableArrayList();
+        
+        try(Connection con = DatabaseConection.gC()){
+            try(PreparedStatement ppsm = con.prepareStatement(sql);
+                ResultSet rs = ppsm.executeQuery()){
+                    while(rs.next()){
+                        CustomerData cD = new CustomerData(
+                            rs.getInt("RECEIPT_ID"),
+                            rs.getInt("CUSTOMER_ID"),
+                            rs.getString("EMPLOYEE_USERNAME"),
+                            rs.getDouble("TOTAL_AMOUNT"),
+                            rs.getDate("DATE")
+                        );
+                        customerData.add(cD);
+                    }
+                    return customerData;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Database Error");
+            alert.setContentText("Error loading customer data: " + e.getMessage());
+            alert.showAndWait();
+            return FXCollections.observableArrayList();
+        }
+    }
+
+    private ObservableList<CustomerData> customerListData;
+
+    public void customersShowData(){
+        customerListData = customerList();
+
+        columnCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        columnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        columnEmployee.setCellValueFactory(new PropertyValueFactory<>("employeeUsername"));
+        columnTotal.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+        tableviewCustomer.setItems(customerListData);
+
+    }
 
     public void inventoryImportBtn(){
 
@@ -475,5 +657,11 @@ public class ControllerAdmin implements Initializable{
         inventoryTypeList();
         inventoryStatus();
         inventoryShowData();
+        customersShowData();
+        dashboandDisplayNc();
+        dashboardDisplayTotalIncome();
+        dashboardDisplayTodayIncome();
+        dashboandCustomerChart();   
+        dashboandIncomeChart();
     }
 }

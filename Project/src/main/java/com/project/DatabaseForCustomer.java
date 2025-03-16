@@ -2,10 +2,6 @@ package com.project;
 
 import java.sql.*;
 
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 public class DatabaseForCustomer {
     public static void createTable(Connection con){
         try(Statement stm = con.createStatement()){
