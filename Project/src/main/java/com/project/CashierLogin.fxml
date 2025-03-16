@@ -22,18 +22,18 @@
                <left>
                   <AnchorPane prefHeight="800.0" prefWidth="258.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="222.0" prefHeight="800.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane layoutY="222.0" prefHeight="800.0" prefWidth="258.0" styleClass="nav-form" stylesheets="@AdminDesigh.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane prefHeight="98.0" prefWidth="258.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane prefHeight="98.0" prefWidth="258.0" styleClass="header" stylesheets="@AdminDesigh.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label contentDisplay="CENTER" layoutX="97.0" layoutY="31.0" prefHeight="36.0" prefWidth="64.0" text="MENU">
+                                    <Label contentDisplay="CENTER" layoutX="91.0" layoutY="31.0" prefHeight="36.0" prefWidth="76.0" styleClass="white-text-header" stylesheets="@AdminDesigh.css" text="MENU">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <Button fx:id="logoutBtn" layoutX="93.0" layoutY="728.0" mnemonicParsing="false" onAction="#logout" prefHeight="32.0" prefWidth="72.0" text="Sign out" AnchorPane.bottomAnchor="40.0" />
+                              <Button fx:id="logoutBtn" layoutX="93.0" layoutY="728.0" mnemonicParsing="false" onAction="#logout" prefHeight="32.0" prefWidth="72.0" styleClass="nav-btn" stylesheets="@AdminDesigh.css" text="Sign out" AnchorPane.bottomAnchor="40.0" />
                            </children>
                         </AnchorPane>
                      </children>
