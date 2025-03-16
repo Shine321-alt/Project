@@ -1,6 +1,7 @@
 package com.project;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.animation.TranslateTransition;
@@ -27,7 +28,26 @@ import javafx.scene.control.PasswordField;
 public class Controller implements Initializable {
 
     @FXML
+    private Button Backbutton;
+
+    @FXML
+    private Button Backbutton1;
+
+
+    @FXML
+    private TextField usernameInForgot;
+
+    @FXML
+    private TextField ForgotPasswordAnswer;
+
+    @FXML
+    private ComboBox<String> ForgotQuestion;
+
+    @FXML
     private Hyperlink HyperlinkForgotPassword;
+
+    @FXML
+    private TextField UseradminRegister;
 
     @FXML
     private TextField answer;
@@ -36,7 +56,10 @@ public class Controller implements Initializable {
     private Button buttonAlready;
 
     @FXML
-    private Button loginBotton;
+    private Button changePassword;
+
+    @FXML
+    private PasswordField confirmPassword;
 
     @FXML
     private AnchorPane createForm;
@@ -45,25 +68,37 @@ public class Controller implements Initializable {
     private Button createNewAccount;
 
     @FXML
+    private Button loginBotton;
+
+    @FXML
     private AnchorPane loginForm;
+
+    @FXML
+    private PasswordField newPassword;
+
+    @FXML
+    private PasswordField passWAdminRegister;
 
     @FXML
     private PasswordField passwordfield;
 
     @FXML
-    private ComboBox<?> question;
+    private Button proceedBtn;
+
+    @FXML
+    private ComboBox<String> question;
+
+    @FXML
+    private AnchorPane questionForm;
+
+    @FXML
+    private AnchorPane questionForm1;
 
     @FXML
     private AnchorPane registerForm;
 
     @FXML
     private PasswordField registerPassword;
-
-    @FXML
-    private TextField UseradminRegister;
-
-    @FXML
-    private PasswordField passWAdminRegister;
 
     @FXML
     private TextField registerUser;
@@ -114,6 +149,7 @@ public class Controller implements Initializable {
                 regAlert.setHeaderText(null);
                 regAlert.setContentText("Cannot connect to database!");
                 regAlert.show();
+                return;
 
             }
             if (DatabaseForUser.checkUser(con, registerUser.getText())) {
@@ -122,6 +158,7 @@ public class Controller implements Initializable {
                 regAlert.setHeaderText(null);
                 regAlert.setContentText("Username already exists!");
                 regAlert.show();
+                return;
 
             }
 
@@ -133,6 +170,7 @@ public class Controller implements Initializable {
                 regAlert.setHeaderText(null);
                 regAlert.setContentText("Admin account not found!");
                 regAlert.show();
+                return;
 
             }
             if (UseradminRegister.getText().equals(dbUser) && passWAdminRegister.getText().equals(dbPassword)) {
@@ -193,7 +231,120 @@ public class Controller implements Initializable {
         question.setItems(listData);
     }
 
+    public void forgotPasswordList(){
+        ArrayList<String> ListQ = new ArrayList<>();
+        for (String data : questionList) {
+            ListQ.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(ListQ);
+        ForgotQuestion.setItems(listData);
+
+    }
+
     private Alert alert;
+
+    public void proceedBtn(){
+        if(ForgotQuestion.getSelectionModel().isEmpty() || ForgotPasswordAnswer.getText().isEmpty()){
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all the fields");
+            alert.showAndWait();
+            return;
+        }else{
+            try(Connection con = DatabaseConection.gC()){
+                if(con == null){
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Database Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Cannot connect to database!");
+                    alert.showAndWait();
+                    return;
+                }
+                if(DatabaseForUser.checkSecurityQuestion(con, usernameInForgot.getText(), (String)ForgotQuestion.getSelectionModel().getSelectedItem(),ForgotPasswordAnswer.getText() )){
+                    questionForm.setVisible(false);
+                    questionForm1.setVisible(true);
+
+                }else{
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Incorrect Security Question or Answer!");
+                    alert.showAndWait();
+                    return;
+                }
+                
+
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void changePassword(){
+        if(newPassword.getText().isEmpty() || confirmPassword.getText().isEmpty()){
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all the fields");
+            alert.showAndWait();
+            return;
+        }else{
+            if(newPassword.getText().equals(confirmPassword.getText())){
+                try(Connection con = DatabaseConection.gC()){
+                    if(con == null){
+                        alert = new Alert(AlertType.ERROR);
+                        alert.setTitle("Database Error");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cannot connect to database!");
+                        alert.showAndWait();
+                        return;
+                    }
+                    if(DatabaseForUser.updatePassword(con, usernameInForgot.getText(), newPassword.getText())){
+                        alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Success Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Password has been successfully changed!");
+                        alert.showAndWait();
+                        
+                        questionForm1.setVisible(false);
+                        loginForm.setVisible(true);
+                    }else{
+                        alert = new Alert(AlertType.ERROR);
+                        alert.setTitle("Error Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Failed to update password!");
+                        alert.showAndWait();
+                    }
+                    
+
+
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }else{
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Password does not match!");
+                alert.showAndWait();
+            }
+
+        }
+    }
+
+    public void switchForgotPassword(){
+        forgotPasswordList();
+        loginForm.setVisible(false);
+        questionForm.setVisible(true);
+    }
+    
+    public void switchBack(){
+        questionForm.setVisible(false);
+        loginForm.setVisible(true);
+    }
 
 @FXML
     public void loginBotton() {
@@ -295,6 +446,10 @@ public class Controller implements Initializable {
                 buttonAlready.setVisible(true);
                 createNewAccount.setVisible(false);
 
+                questionForm.setVisible(false);
+                loginForm.setVisible(true);
+                questionForm1.setVisible(false);
+
                 regquestionList();
             });
 
@@ -307,6 +462,10 @@ public class Controller implements Initializable {
             slider.setOnFinished((ActionEvent e) -> {
                 buttonAlready.setVisible(false);
                 createNewAccount.setVisible(true);
+
+                questionForm.setVisible(false);
+                loginForm.setVisible(true);
+                questionForm1.setVisible(false);
             });
 
             slider.play();

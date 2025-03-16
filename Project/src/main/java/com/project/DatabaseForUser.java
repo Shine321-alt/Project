@@ -44,22 +44,21 @@ public class DatabaseForUser {
             e.printStackTrace();
         }
     }
-    public static void updateUser(Connection conn,int id ,String userName ,String password,String question,String answer ,String employee ){
-        String sql = "UPDATE EMPLOYEE SET NAME = ?, QUESTION = ?, ANSWER = ? , EMAIL = ? , DATE = ? WHERE id = ?";
-        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-            pstm.setString(1, userName);
-            pstm.setString(2, password);
-            pstm.setString(3, question);
-            pstm.setString(4, answer);
-            pstm.setString(5, employee);
-            pstm.setInt(6, id);
-            pstm.executeUpdate();
+
+    public static boolean updatePassword(Connection con, String username, String newPassword) {
+        String sql = "UPDATE EMPLOYEE SET PASSWORD = ? WHERE USERNAME = ?";
+        try (PreparedStatement pstm = con.prepareStatement(sql)) {
+            pstm.setString(1, newPassword);
+            pstm.setString(2, username);
+            int rowsAffected = pstm.executeUpdate();
+            return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+    }
     
         
-    }
     public static void getInformation(Connection con){
         String sql = "SELECT * FROM EMPLOYEE";  
         try(Statement stm = con.createStatement();
@@ -135,6 +134,21 @@ public class DatabaseForUser {
                 }
             }
         }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean checkSecurityQuestion(Connection con, String username, String question, String answer) {
+        String sql = "SELECT * FROM EMPLOYEE WHERE USERNAME = ? AND LOWER(QUESTION) = LOWER(?) AND LOWER(ANSWER) = LOWER(?)";
+        try (PreparedStatement ppsm = con.prepareStatement(sql)) {
+            ppsm.setString(1, username);
+            ppsm.setString(2, question);
+            ppsm.setString(3, answer);
+            try (ResultSet rs = ppsm.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
