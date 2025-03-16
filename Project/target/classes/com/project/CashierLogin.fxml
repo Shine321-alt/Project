@@ -21,7 +21,7 @@
          <children>
             <VBox prefHeight="806.0" prefWidth="261.0" spacing="10.0" styleClass="right-bar-background" stylesheets="@AllStylas.css">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="159.0" prefWidth="261.0" stylesheets="@AllStylas.css">
+                  <VBox alignment="TOP_CENTER" prefHeight="218.0" prefWidth="259.0" styleClass="bgConfirm-custom" stylesheets="@AllStylas.css">
                      <children>
                         <HBox prefHeight="35.0" prefWidth="261.0" />
                         <ImageView fitHeight="95.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
@@ -32,11 +32,22 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label text="Cashier" underline="true">
+                        <Label text="Welcome">
+                           <font>
+                              <Font name="Calibri Bold" size="25.0" />
+                           </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="37.0" prefWidth="259.0">
+                           <children>
+                              <Label text="Thanapat" underline="true" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
                      </children>
                   </VBox>
                   <HBox prefHeight="17.0" prefWidth="261.0" />
@@ -58,10 +69,28 @@
                         </Button>
                      </children>
                   </HBox>
-                  <ListView prefHeight="200.0" prefWidth="200.0" />
+                  <ListView prefHeight="24.0" prefWidth="259.0" />
+                  <HBox alignment="TOP_CENTER" prefHeight="37.0" prefWidth="261.0">
+                     <children>
+                        <ImageView fitHeight="37.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../recourse/OIP.jpg" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="107.0" stylesheets="@AllStylas.css" text="Menu">
+                           <styleClass>
+                              <String fx:value="primary-background" />
+                              <String fx:value="label-custom" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
-            <AnchorPane layoutX="261.0" layoutY="-18.0" prefHeight="816.0" prefWidth="1028.0" style="-fx-background-color: f3f2e1;">
+            <AnchorPane layoutX="261.0" layoutY="-18.0" prefHeight="823.0" prefWidth="1030.0" style="-fx-background-color: f3f2e1;">
                <children>
                   <ScrollPane layoutX="20.0" layoutY="163.0" prefHeight="209.0" prefWidth="653.0" styleClass="bg-custom" stylesheets="@AllStylas.css">
                      <content>
@@ -69,7 +98,7 @@
                            <children>
                               <VBox fx:id="menu1" alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
                                  <children>
-                                    <ImageView fitHeight="119.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="114.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../recourse/l-intro-1661785817.jpg" />
                                        </image>
@@ -179,7 +208,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
                                  <children>
-                                    <ImageView fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="109.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../recourse/OIP%20(3).jpg" />
                                        </image>
@@ -247,7 +276,7 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="178.0" prefWidth="179.0" styleClass="white-card" stylesheets="@AllStylas.css">
                                  <children>
-                                    <ImageView fitHeight="99.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="107.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../recourse/OIP%20(5).jpg" />
                                        </image>
@@ -304,7 +333,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <ListView layoutX="28.0" layoutY="31.0" prefHeight="221.0" prefWidth="289.0" />
+                        <ListView fx:id="listvieworder" layoutX="28.0" layoutY="31.0" prefHeight="455.0" prefWidth="296.0" styleClass="bg-custom" stylesheets="@AllStylas.css" />
                      </children>
                   </AnchorPane>
                   <Label layoutX="28.0" layoutY="119.0" stylesheets="@AllStylas.css" text="Food">
@@ -336,7 +365,7 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <Button fx:id="logoutButton" layoutX="14.0" layoutY="756.0" mnemonicParsing="false" onAction="#logout" stylesheets="@AllStylas.css" text="Logout">
+            <Button fx:id="logoutButton" layoutX="14.0" layoutY="767.0" mnemonicParsing="false" onAction="#logout" stylesheets="@AllStylas.css" text="Logout">
                <styleClass>
                   <String fx:value="button-custom" />
                   <String fx:value="label-custom" />

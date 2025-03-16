@@ -2,6 +2,8 @@ package com.project;
 
 import java.io.IOException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,6 +45,9 @@ public class CashierLogin {
 
     @FXML
     private Label totalPriceLable;
+
+    @FXML
+    private ListView<String> listvieworder;
     
     private double total = 0.00;
 
@@ -55,8 +60,17 @@ public class CashierLogin {
     private final double food2Price = 60.00;
     private final double food3Price = 120.00;
 
+
+    private final ObservableList<String> products = FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize() {
+        listview.setItem(products);
+    }
+
     @FXML
     void addDrink1(ActionEvent event) {
+        products.ADD
         total += drink1Price;
         updateTotalPrice();
 
