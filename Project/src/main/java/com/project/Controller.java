@@ -80,6 +80,8 @@ public class Controller implements Initializable {
 
     private Connection con;
 
+    public static String username;
+
     private void clearRegistrationForm() {
         registerUser.clear();
         registerPassword.clear();
@@ -235,6 +237,8 @@ public class Controller implements Initializable {
                 Stage currenStage = (Stage)loginBotton.getScene().getWindow();
                 currenStage.close();
                 }else{
+                    username = textFieldUsername.getText();
+
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
@@ -249,6 +253,9 @@ public class Controller implements Initializable {
                     stage.setMinWidth(1280);
                     stage.setScene(scene);
                     stage.show();
+
+                    Stage currenStage = (Stage)loginBotton.getScene().getWindow();
+                    currenStage.close();
                 }
             } else {
                 alert = new Alert(AlertType.ERROR);

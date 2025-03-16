@@ -13,6 +13,8 @@ public class ProductData {
     private Date date;
     private String type;
 
+    private Integer quantity;
+
     public ProductData(Integer id , String productId
                         , String productName, Double productPrice,String type
                         , Integer stock, String status
@@ -29,12 +31,27 @@ public class ProductData {
         this.type = type;
     }
 
-    public ProductData(Integer id , String productId,String productName, Double productPrice){
-
+    public ProductData(Integer id , String productId,String productName,String type, Double productPrice,String image){
+        this.image = image;
         this.id = id;
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
+        this.type = type;
+    }
+
+    public ProductData(Integer id , String productId,String productName,String type,Integer quantity, Double productPrice,String image){
+        this.image = image;
+        this.id = id;
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.type = type;
+        this.quantity = quantity;
+    }
+
+    public Integer getQuantity(){
+        return quantity;
     }
 
     public Integer getId(){

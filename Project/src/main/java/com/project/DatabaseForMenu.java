@@ -51,56 +51,91 @@ public class DatabaseForMenu {
         }catch(SQLException e){e.printStackTrace();}
     }
 
-    public static void updateMenu(Connection conn,String PRODUCT_ID 
-                                    ,String PRODUCT_NAME ,String type,int STOCK 
-                                    ,double PRICE ,String STATUS 
-                                    ,String IMAGE ,Date DATE){
-                                        
+    public static void updateMenu(Connection conn, String productId,
+                                 String productName, String type
+                                , int stock, double price
+                                , String status, String image, Date date) {
         String sql = "UPDATE MENU SET PRODUCT_NAME = ?, PRODUCT_TYPE = ?, " +
                     "STOCK = ?, PRICE = ?, STATUS = ?, IMAGE = ?, DATE = ? WHERE PRODUCT_ID = ?";
 
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-            pstm.setString(1, PRODUCT_NAME);
+            pstm.setString(1, productName);
             pstm.setString(2, type);
-            pstm.setInt(3, STOCK);
-            pstm.setDouble(4, PRICE);
-            pstm.setString(5, STATUS);
-            pstm.setString(6, IMAGE);
-            pstm.setDate(7, DATE);
-            pstm.setString(8, PRODUCT_ID);
-            pstm.executeUpdate();
-            pstm.executeUpdate();
+            pstm.setInt(3, stock);
+            pstm.setDouble(4, price);
+            pstm.setString(5, stock == 0 ? "unavailable" : "available");
+            pstm.setString(6, image);
+            pstm.setDate(7, date != null ? date : new Date(System.currentTimeMillis()));
+            pstm.setString(8, productId);
+
+            if (pstm.executeUpdate() > 0) {
+                System.out.println("Menu item updated successfully");
+            } else {
+                System.out.println("Menu item not found");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-        public static void deleteMenu(Connection con , String productId) {
-            String sql = "DELETE FROM MENU WHERE PRODUCT_ID = ?";
-            try(PreparedStatement pstm = con.prepareStatement(sql)){
-                pstm.setString(1, productId);
-                pstm.executeUpdate();
-            }catch(SQLException e){e.printStackTrace();}
+    public static void updateStock(Connection con, String productId, int newStock) {
+        String sql = "UPDATE MENU SET STOCK = ? WHERE PRODUCT_ID = ?";
+        try (PreparedStatement pstm = con.prepareStatement(sql)) {
+            pstm.setInt(1, newStock);
+            pstm.setString(2, productId);
+            int result = pstm.executeUpdate();
+            if (result > 0) {
+                System.out.println("Stock updated successfully");
+            } else {
+                System.out.println("Product not found");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    
-        public static void getInformation(Connection con){
-            String sql = "SELECT * FROM MENU";
-            try(Statement stm = con.createStatement();
-                ResultSet rs = stm.executeQuery(sql)){
-                    while(rs.next()){
-                        System.out.println("ID: " + rs.getInt("ID"));
-                        System.out.println("Product ID: " + rs.getString("PRODUCT_ID"));
-                        System.out.println("Product Name: " + rs.getString("PRODUCT_NAME"));
-                        System.out.println("Product Type: " + rs.getString("PRODUCT_TYPE"));
-                        System.out.println("Stock: " + rs.getInt("STOCK"));
-                        System.out.println("Price: " + rs.getDouble("PRICE"));
-                        System.out.println("Status: " + rs.getString("STATUS"));
-                        System.out.println("Image: " + rs.getString("IMAGE"));
-                        System.out.println("Date: " + rs.getDate("DATE"));
-                    }
-                }catch(SQLException e){e.printStackTrace();}
-
     }
+
+    public static void updateStatus(Connection con, String productId, String status) {
+        String sql = "UPDATE MENU SET STATUS =? WHERE PRODUCT_ID =?";
+        try (PreparedStatement pstm = con.prepareStatement(sql)){
+            pstm.setString(1, status);
+            pstm.setString(2, productId);
+            int result = pstm.executeUpdate();
+            if(result > 0){
+                System.out.println("Status updated successfully");
+            }else{
+                System.out.println("Product not found");
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteMenu(Connection con , String productId) {
+        String sql = "DELETE FROM MENU WHERE PRODUCT_ID = ?";
+        try(PreparedStatement pstm = con.prepareStatement(sql)){
+            pstm.setString(1, productId);
+            pstm.executeUpdate();
+        }catch(SQLException e){e.printStackTrace();}
+    }
+    
+    public static void getInformation(Connection con){
+        String sql = "SELECT * FROM MENU";
+        try(Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery(sql)){
+                while(rs.next()){
+                    System.out.println("ID: " + rs.getInt("ID"));
+                    System.out.println("Product ID: " + rs.getString("PRODUCT_ID"));
+                    System.out.println("Product Name: " + rs.getString("PRODUCT_NAME"));
+                    System.out.println("Product Type: " + rs.getString("PRODUCT_TYPE"));
+                    System.out.println("Stock: " + rs.getInt("STOCK"));
+                    System.out.println("Price: " + rs.getDouble("PRICE"));
+                    System.out.println("Status: " + rs.getString("STATUS"));
+                    System.out.println("Image: " + rs.getString("IMAGE"));
+                    System.out.println("Date: " + rs.getDate("DATE"));
+                }
+            }catch(SQLException e){e.printStackTrace();}
+    }
+
     public static boolean checkProduct(Connection con, String productId) {
         String sql = "SELECT PRODUCT_ID FROM MENU WHERE PRODUCT_ID = ?";
         try (PreparedStatement ppsm = con.prepareStatement(sql)) {
@@ -112,6 +147,38 @@ public class DatabaseForMenu {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static int checkStock(Connection con, String productId) {
+        String sql = "SELECT STOCK FROM MENU WHERE PRODUCT_ID = ?";
+        try (PreparedStatement ppsm = con.prepareStatement(sql)) {
+            ppsm.setString(1, productId);  
+            try (ResultSet rs = ppsm.executeQuery()) {  
+                if (rs.next()) {
+                    return rs.getInt("STOCK");
+                }
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public static boolean checkStatus(Connection con , String productId){
+        String sql = "SELECT STATUS FROM MENU WHERE PRODUCT_ID =?";
+        try(PreparedStatement ppsm = con.prepareStatement(sql)){
+            ppsm.setString(1, productId);
+            try(ResultSet rs = ppsm.executeQuery()){
+                if(rs.next())
+                    return "available".equalsIgnoreCase(rs.getString("STATUS"));
+                
+                return false;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }
 

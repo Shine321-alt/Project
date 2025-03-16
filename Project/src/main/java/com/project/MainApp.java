@@ -19,6 +19,8 @@ public class MainApp extends Application{
         if (con != null) {
             System.out.println("Database connected successfully!");
             DatabaseForUser.getInformation(con);
+            DatabaseForCustomer.deleteAllData(con);
+            DatabaseForReceipt.getInformation(con);
         } else {
             System.out.println("Failed to connect to database.");
         }

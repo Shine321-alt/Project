@@ -9,8 +9,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
@@ -33,7 +33,7 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <Button fx:id="logoutBtn" layoutX="93.0" layoutY="728.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" text="Sign out" AnchorPane.bottomAnchor="40.0" />
+                              <Button fx:id="logoutBtn" layoutX="93.0" layoutY="728.0" mnemonicParsing="false" onAction="#logout" prefHeight="32.0" prefWidth="72.0" text="Sign out" AnchorPane.bottomAnchor="40.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -53,10 +53,10 @@
                                  <children>
                                     <ScrollPane fx:id="MenuScrollPane" layoutX="13.0" layoutY="11.0" prefHeight="733.0" prefWidth="730.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="11.0">
                                        <content>
-                                          <GridPane fx:id="menuGridPane" prefHeight="30.0" prefWidth="117.0">
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                          <GridPane fx:id="menuGridPane" hgap="10" prefHeight="21.0" prefWidth="89.0" vgap="10">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
                                           </GridPane>
                                        </content>
                                     </ScrollPane>
@@ -79,7 +79,7 @@
                                     <String fx:value="radiuse" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="menuTableView" layoutX="2.0" layoutY="14.0" prefHeight="400.0" prefWidth="223.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="14.0">
+                                    <TableView fx:id="menuTableView" layoutX="2.0" layoutY="14.0" onMouseClicked="#menuSelectOrder" prefHeight="400.0" prefWidth="223.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="14.0">
                                       <columns>
                                         <TableColumn fx:id="ColumnProductName" prefWidth="105.0" text="Product Name" />
                                         <TableColumn fx:id="ColumnQuantity" prefWidth="60.0" text="Quantity" />
@@ -91,7 +91,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="menuTotal" layoutX="57.0" layoutY="425.0" text="0.0" AnchorPane.rightAnchor="149.0">
+                                    <Label fx:id="menuTotal" layoutX="137.0" layoutY="425.0" text="0.0" AnchorPane.rightAnchor="69.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -101,30 +101,24 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="menuAmount" layoutX="80.0" layoutY="459.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="12.0" />
+                                    <TextField fx:id="menuAmount" layoutX="80.0" layoutY="459.0" onAction="#menuAmount" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="12.0" />
                                     <Label layoutX="14.0" layoutY="493.0" text="Change: " AnchorPane.leftAnchor="14.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="menuChange" layoutX="78.0" layoutY="493.0" text="0.0" AnchorPane.rightAnchor="128.0">
+                                    <Label fx:id="menuChange" layoutX="137.0" layoutY="493.0" text="0.0" AnchorPane.rightAnchor="69.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="payBtn" layoutX="21.0" layoutY="526.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="175.0" stylesheets="@AdminDesigh.css" text="Pay" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="31.0">
+                                    <Button fx:id="payBtn" layoutX="21.0" layoutY="526.0" mnemonicParsing="false" onAction="#payBtn" prefHeight="32.0" prefWidth="175.0" stylesheets="@AdminDesigh.css" text="Pay" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="31.0">
                                        <styleClass>
-                                          <String fx:value="nav-form" />
-                                          <String fx:value="white-text" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button fx:id="removeBtn" layoutX="21.0" layoutY="578.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" stylesheets="@AdminDesigh.css" text="Remove" AnchorPane.leftAnchor="21.0">
-                                       <styleClass>
-                                          <String fx:value="white-text" />
                                           <String fx:value="btn" />
+                                          <String fx:value="white-text" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="receiptBtn" layoutX="124.0" layoutY="578.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" stylesheets="@AdminDesigh.css" text="Receipt" AnchorPane.rightAnchor="31.0">
+                                    <Button fx:id="removeBtn" layoutX="21.0" layoutY="578.0" mnemonicParsing="false" onAction="#removeBtn" prefHeight="32.0" prefWidth="175.0" stylesheets="@AdminDesigh.css" text="Remove" AnchorPane.leftAnchor="21.0">
                                        <styleClass>
                                           <String fx:value="white-text" />
                                           <String fx:value="btn" />

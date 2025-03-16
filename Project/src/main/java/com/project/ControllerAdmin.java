@@ -18,6 +18,7 @@ import org.h2.engine.Database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -116,6 +117,9 @@ public class ControllerAdmin implements Initializable{
     private TextField stockProduct;
 
     @FXML
+    private AnchorPane customersForm;
+
+    @FXML
     private ComboBox<String> typeProduct;
 
     @FXML
@@ -140,6 +144,22 @@ public class ControllerAdmin implements Initializable{
         statusProduct.getSelectionModel().clearSelection();
         inventoryImage.setImage(null);
         data.path = null;
+    }
+
+    public void switchForm(ActionEvent event){
+        if(event.getSource() == dashboand){
+            dashBoandForm.setVisible(true);
+            inventoryForm.setVisible(false);
+            customersForm.setVisible(false);
+        }else if(event.getSource() == inventory){
+            dashBoandForm.setVisible(false);
+            inventoryForm.setVisible(true);
+            customersForm.setVisible(false);
+        }else if(event.getSource() == customers){
+            dashBoandForm.setVisible(false);
+            inventoryForm.setVisible(false);
+            customersForm.setVisible(true);
+        }
     }
 
     public void inventoryUpdateBtn(){
