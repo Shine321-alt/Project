@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.animation.TranslateTransition;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,15 +14,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.scene.control.PasswordField;
 
 public class Controller implements Initializable {
 
@@ -266,6 +265,9 @@ public class Controller implements Initializable {
                     questionForm.setVisible(false);
                     questionForm1.setVisible(true);
 
+                    usernameInForgot.clear();
+                    ForgotPasswordAnswer.clear();
+
                 }else{
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Error Message");
@@ -308,6 +310,9 @@ public class Controller implements Initializable {
                         alert.setHeaderText(null);
                         alert.setContentText("Password has been successfully changed!");
                         alert.showAndWait();
+
+                        newPassword.clear();
+                        confirmPassword.clear();
                         
                         questionForm1.setVisible(false);
                         loginForm.setVisible(true);
@@ -342,7 +347,14 @@ public class Controller implements Initializable {
     }
     
     public void switchBack(){
+        newPassword.clear();
+        confirmPassword.clear();
+
+        usernameInForgot.clear();
+        ForgotPasswordAnswer.clear();
+
         questionForm.setVisible(false);
+        questionForm1.setVisible(false);
         loginForm.setVisible(true);
     }
 
