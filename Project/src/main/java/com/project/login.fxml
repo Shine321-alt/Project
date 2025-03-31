@@ -40,7 +40,7 @@
                   <TextField fx:id="textFieldUsername" layoutX="40.0" layoutY="110.0" prefHeight="30.0" prefWidth="220.0" promptText="Username" />
                   <Button fx:id="loginBotton" layoutX="95.0" layoutY="243.0" mnemonicParsing="false" onAction="#loginBotton" prefHeight="30.0" prefWidth="110.0" text="Login" />
                   <Hyperlink fx:id="HyperlinkForgotPassword" layoutX="40.0" layoutY="213.0" onAction="#switchForgotPassword" text="Forgot Password ?" />
-                  <PasswordField fx:id="passwordfield" layoutX="40.0" layoutY="160.0" prefHeight="30.0" prefWidth="220.0" />
+                  <PasswordField fx:id="passwordfield" layoutX="40.0" layoutY="160.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="createForm" prefHeight="400.0" prefWidth="300.0" styleClass="gradient" stylesheets="@LoginDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">

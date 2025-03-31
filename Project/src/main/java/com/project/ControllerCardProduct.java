@@ -1,8 +1,6 @@
 package com.project;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -102,6 +100,7 @@ public class ControllerCardProduct implements Initializable {
                 }
 
                 int currentStock = DatabaseForMenu.checkStock(con, productId);
+
                 if(quantity > currentStock){
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERROR MESSAGE");
@@ -138,6 +137,7 @@ public class ControllerCardProduct implements Initializable {
                         quantity, 
                         Double.parseDouble(formattedTotal), 
                         Controller.username);  
+                        currentStock -= quantity;
                     
                     if(cashierLogin != null) {
                         cashierLogin.showMenu();
