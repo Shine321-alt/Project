@@ -461,6 +461,9 @@ public class Controller implements Initializable {
                 questionForm.setVisible(false);
                 loginForm.setVisible(true);
                 questionForm1.setVisible(false);
+                
+                textFieldUsername.clear();
+                passwordfield.clear();
 
                 regquestionList();
             });
@@ -474,6 +477,8 @@ public class Controller implements Initializable {
             slider.setOnFinished((ActionEvent e) -> {
                 buttonAlready.setVisible(false);
                 createNewAccount.setVisible(true);
+
+                clearRegistrationForm();
 
                 questionForm.setVisible(false);
                 loginForm.setVisible(true);
