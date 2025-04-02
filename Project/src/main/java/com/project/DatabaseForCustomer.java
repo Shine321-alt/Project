@@ -111,4 +111,15 @@ public class DatabaseForCustomer {
         }
     }
 
+    public static void resetMenuData(Connection con){
+        String sql = "DELETE FROM CUSTOMER";
+        try(Statement stm = con.createStatement()){
+            int rowsDeleted = stm.executeUpdate(sql);
+            System.out.println("Deleted " + rowsDeleted + " rows from CUSTOMER table.");
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 }

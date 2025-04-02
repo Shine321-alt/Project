@@ -180,5 +180,16 @@ public class DatabaseForMenu {
         }
         return false;
     }
+
+    public static void resetMenuData(Connection con){
+        String sql = "DELETE FROM MENU";
+        try(Statement stm = con.createStatement()){
+            int rowsDeleted = stm.executeUpdate(sql);
+            System.out.println("Deleted " + rowsDeleted + " rows from MENU table.");
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
 

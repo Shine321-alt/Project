@@ -85,5 +85,16 @@ public class DatabaseForReceipt {
         }
     }
 
+    public static void resetMenuData(Connection con){
+        String sql = "DELETE FROM RECEIPT";
+        try(Statement stm = con.createStatement()){
+            int rowsDeleted = stm.executeUpdate(sql);
+            System.out.println("Deleted " + rowsDeleted + " rows from RECEIPT table.");
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
 }
