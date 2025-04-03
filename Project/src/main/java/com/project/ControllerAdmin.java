@@ -169,7 +169,6 @@ public class ControllerAdmin implements Initializable{
     private String[] statusList = {"Available","Unavailable"};
 
     private Image image;
- 
 
     @FXML
     public void clearForm(){

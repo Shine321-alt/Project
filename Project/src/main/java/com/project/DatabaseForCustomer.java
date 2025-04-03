@@ -71,7 +71,7 @@ public class DatabaseForCustomer {
         }
     }
 
-    public static void deleteData(Connection con, int customerId, int id) {
+    public static void deleteData(Connection con, int customerId, int id) { // การลบข้อมูลที่ต้องการ
         String sql = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = ? AND ID = ?";
         try (PreparedStatement pstm = con.prepareStatement(sql)) {
             pstm.setInt(1, customerId);

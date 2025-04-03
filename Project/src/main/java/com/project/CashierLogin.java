@@ -79,7 +79,6 @@ public class CashierLogin implements Initializable{
     private ObservableList<ProductData> cardListData;
     private ObservableList<CustomerData> menuListdata;
 
-    private data data;
 
     private int id;
 
@@ -91,7 +90,7 @@ public class CashierLogin implements Initializable{
         
     }
 
-    public void removeBtn() {
+    public void removeBtn() {   //สำหรับลบ order ที่มีอยู่ในตาราง
         if(menuTableView.getItems().isEmpty()) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -111,7 +110,7 @@ public class CashierLogin implements Initializable{
             return;
         }
 
-        alert = new Alert(AlertType.CONFIRMATION);
+        alert = new Alert(AlertType.CONFIRMATION); //แจ้งเตือนยืนยันก่อนการลบข้อมูล Order
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to remove " + selectedItem.getProductName() + "?");
@@ -120,7 +119,7 @@ public class CashierLogin implements Initializable{
         if(option.isPresent() && option.get() == ButtonType.OK) {
             try (Connection con = DatabaseConection.gC()) {
                 DatabaseForCustomer.deleteData(con, customerId, selectedItem.getId());
-                menuTableView.getItems().remove(selectedItem);
+                menuTableView.getItems().remove(selectedItem); //ลบข้อมูลตามที่ selectedItem
 
                 double total = 0;
                 for(CustomerData item : menuTableView.getItems()) {
@@ -128,7 +127,7 @@ public class CashierLogin implements Initializable{
                         total += item.getPrice() * item.getQuantity();
                     }
                 }
-                menuTotal.setText(String.format("%.2f", total));
+                menuTotal.setText(String.format("%.2f", total)); //อัพเดทยอดรวมอีกที
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -198,7 +197,7 @@ public class CashierLogin implements Initializable{
         menuTotal.setText(String.format("%.2f", total));
     }
 
-    public void customerId() {
+    public void customerId() { //สำหรับสร้าง customerId ใหม่
         String sql = "SELECT MAX(CUSTOMER_ID) FROM CUSTOMER";
         try (Connection con = DatabaseConection.gC()) {
 
@@ -220,12 +219,6 @@ public class CashierLogin implements Initializable{
                 customerId = Math.max(customerId, checkId) + 1;
             }
 
-
-            if (data != null) {
-                data.customerId = customerId;
-            } else {
-                throw new IllegalStateException("Data object is not initialized");
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -265,7 +258,7 @@ public class CashierLogin implements Initializable{
     
     public void payBtn(){
         try{
-            if (menuAmount.getText().isEmpty() || menuTotal.getText().isEmpty()) {
+            if (menuAmount.getText().isEmpty() || menuTotal.getText().isEmpty()) { // เช็คการกรอกข้อมูลต่างๆ และ แสดงข้อมูลตามชนิดข้อผผิดพลาด
                 alert = new Alert(AlertType.ERROR);
                 alert.setTitle("ERROR");
                 alert.setHeaderText(null);
@@ -292,10 +285,10 @@ public class CashierLogin implements Initializable{
                 return;
             }
 
-            double amount = Double.parseDouble(menuAmount.getText());
+            double amount = Double.parseDouble(menuAmount.getText()); //แปลง String เป็น double
             double total = Double.parseDouble(menuTotal.getText());
 
-            if(amount < total) {
+            if(amount < total) {    // เช็คว่าจำนวนเงินที่จ่ายน้อยกว่าราคาสินค้าหรือไม่
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
@@ -315,7 +308,7 @@ public class CashierLogin implements Initializable{
             }
 
             try(Connection con = DatabaseConection.gC()){
-                con.setAutoCommit(false);
+                con.setAutoCommit(false); // ปิดการทำงานอัตโนมัติของฐานข้อมูล เพื่อความปลอดภัยในการใช้ฐานข้อมูลแบบหลายการดำเนินการ
                 try {
                     // อัพเดทสต็อกสินค้า
                     String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = ?";
@@ -331,27 +324,27 @@ public class CashierLogin implements Initializable{
                             String productId = rs.getString("PRODUCT_ID");
                             int quantity = rs.getInt("QUANTITY");
 
-                            int currentStock = DatabaseForMenu.checkStock(con, productId);
-                            if(currentStock < quantity) {
+                            int currentStock = DatabaseForMenu.checkStock(con, productId); //รับค่าจำนวน stock ที่มีอยู่
+                            if(currentStock < quantity) { // กรณีที่ stock ไม่พอ
                                 throw new SQLException("Insufficient stock for product: " + productId);
                             }
                             int newStock = currentStock - quantity;
-                            DatabaseForMenu.updateStock(con, productId, newStock);
+                            DatabaseForMenu.updateStock(con, productId, newStock); //อัพเดท stock
 
                             if(newStock == 0)
-                                DatabaseForMenu.updateStatus(con, productId, "Unavailable");
-                        } while(rs.next());
+                                DatabaseForMenu.updateStatus(con, productId, "Unavailable"); //อัพเดทสถานะสินค้าเป็น unavailable ถ้าสินค้าหมด
+                        } while(rs.next()); // 
                     }
 
                     // บันทึกใบเสร็จ
                     DatabaseForReceipt.insertReceipt(con, customerId, Controller.username, total);
-                    DatabaseForReceipt.getReceiptId(con, customerId, Controller.username);
+                    DatabaseForReceipt.getReceiptId(con, customerId, Controller.username); 
                     // ลบข้อมูลในตาราง CUSTOMER
                     DatabaseForCustomer.deleteData(con, customerId);
 
-                    con.commit();
+                    con.commit(); //ยืนยันการทำงานทั้งหมดของฐานข้อมูล
                 } catch(Exception e) {
-                    con.rollback();
+                    con.rollback(); // ยกเลิกการทำงานของฐานข้อมูล
                     throw e;
                 }
             }
@@ -382,7 +375,7 @@ public class CashierLogin implements Initializable{
         }
     }
 
-    public ObservableList<ProductData> menuGetdata() {
+    public ObservableList<ProductData> menuGetdata() { // ส่งข้อมูลจากตาราง MENU 
         String sql = "SELECT * FROM MENU ORDER BY ID";
         ObservableList<ProductData> listData = FXCollections.observableArrayList();
 
@@ -421,31 +414,31 @@ public class CashierLogin implements Initializable{
             ObservableList<ProductData> listData = menuGetdata();
             cardListData.addAll(listData);
 
-            int row = 0;
+            int row = 0; // สำหรับกำหนดแถวและคอลัมน์ใน GridPane
             int col = 0;
 
             menuGridPane.getRowConstraints().clear();
             menuGridPane.getColumnConstraints().clear();
             
-            for(int i = 0; i < cardListData.size(); i++) {
-                URL fxmlUrl = getClass().getResource("/com/project/cardProduct.fxml");
+            for(int i = 0; i < cardListData.size(); i++) { // loop รับการ์ดสินค้า เพื่อแสดงใน GridPane
+                URL fxmlUrl = getClass().getResource("/com/project/cardProduct.fxml"); // โหลด FXML ของการ์ดสินค้า
                 if (fxmlUrl == null) {
                     throw new IOException("Cannot find cardProduct.fxml in resources");
                 }
                 FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
                 AnchorPane pane = fxmlLoader.load();
                 
-                ControllerCardProduct controller = fxmlLoader.getController();
-                controller.setData(cardListData.get(i));
+                ControllerCardProduct controller = fxmlLoader.getController(); // โหลด Controller ของการ์ดสินค้า
+                controller.setData(cardListData.get(i)); // set ข้อมูลจต่างๆ
                 controller.setCashierLogin(this); 
                 controller.setCustomerId(customerId);
 
-                if(col == 3) {
+                if(col == 3) { // ถ้าคอลัมน์ถึง 3 ให้เริ่มแถวใหม่
                     col = 0;
                     row++;
                 }
-                menuGridPane.add(pane, col++, row);
-                GridPane.setMargin(pane, new Insets(10));
+                menuGridPane.add(pane, col++, row); // เพิ่มการ์ดสินค้าใน GridPane
+                GridPane.setMargin(pane, new Insets(10)); //ระยะห่างระหว่างการ์ด
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -491,15 +484,14 @@ public class CashierLogin implements Initializable{
     @Override
     public void initialize(java.net.URL arg0, java.util.ResourceBundle arg1) {
         try {
-            cardListData = FXCollections.observableArrayList();
+            cardListData = FXCollections.observableArrayList(); // สำหรับเก็บข้อมูลสินค้าและข้อมูลเมณูในการแสดงผลที่ UI
             menuListdata = FXCollections.observableArrayList();
-            data = new data();
             
             menuAmount.setText("0.00");
             menuTotal.setText("0.00");
             menuChange.setText("0.00");
 
-            customerId();
+            customerId(); // เรียกเมทอดสำหรับการแสดง เมณูเริ่มต้น
             showMenu();
             menuDisplayCard();
 
