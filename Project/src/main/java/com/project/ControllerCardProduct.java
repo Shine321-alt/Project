@@ -48,15 +48,14 @@ public class ControllerCardProduct implements Initializable {
 
     private CashierLogin cashierLogin;
 
-    public void setCashierLogin(CashierLogin cashierLogin){
+    public void setCashierLogin(CashierLogin cashierLogin){ //เซ็ตให้ติดต่อกันได้
         this.cashierLogin = cashierLogin;
     }
     public void setCustomerId(int customerId){
         this.customerId = customerId;
     }
 
-//DatabaseForcustomer
-    public void setData(ProductData productData){
+    public void setData(ProductData productData){ //เซ็ตเพื่อแสดงข้อมูลใน card สินค้า
         this.productData = productData;
         productId = productData.getProductId();
         productName.setText(productData.getProductName());
@@ -69,7 +68,7 @@ public class ControllerCardProduct implements Initializable {
 
 
 
-    public void setQuantity(){
+    public void setQuantity(){ //เซ็ตให้สามารถเลือกจำนวนสินค้าได้ ช่วง 1-100
         spin = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,100,1);
         productSpinner.setValueFactory(spin);
     }

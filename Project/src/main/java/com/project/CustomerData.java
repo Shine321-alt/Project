@@ -24,15 +24,6 @@ public class CustomerData {
         this.totalPrice = totalPrice;
         this.date = date;
     }
-
-
-    
-    public CustomerData(int id,String productName, int quantity, Double price) {
-        this.productName = productName;
-        this.productType = productType;
-        this.stock = stock;
-        this.id = id;
-    }
     public CustomerData(String productName, int quantity, Double price) {
         this.productName = productName;
         this.quantity = quantity;    
@@ -62,11 +53,5 @@ public class CustomerData {
     public Double getTotalPrice() {return totalPrice;}
     public String getEmployeeUsername() {return employeeUsername;}
     public Date getDate() {return date;}
-
-
-    
-    
-    public int getId() {
-        return id;
-    }
+    public int getId() {return id;}
 }
