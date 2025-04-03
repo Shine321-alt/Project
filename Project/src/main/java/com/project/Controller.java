@@ -126,7 +126,7 @@ public class Controller implements Initializable {
     }
 
     public void regBtn() {
-        if (registerUser.getText().isEmpty()
+        if (registerUser.getText().isEmpty()    //เช็คช่องใส่ข้อมูลต่างๆว่างไหม
                 || registerPassword.getText().isEmpty()
                 || question.getSelectionModel().isEmpty()
                 || answer.getText().isEmpty()
@@ -141,7 +141,7 @@ public class Controller implements Initializable {
         }
 
         try {
-            con = DatabaseConection.gC();
+            con = DatabaseConection.gC(); //เชื่อม Database และ เช็คว่าเชื่อมได้ไหม
             if (con == null) {
                 regAlert = new Alert(AlertType.ERROR);
                 regAlert.setTitle("Database Error");
@@ -151,7 +151,7 @@ public class Controller implements Initializable {
                 return;
 
             }
-            if (DatabaseForUser.checkUser(con, registerUser.getText())) {
+            if (DatabaseForUser.checkUser(con, registerUser.getText())) { //เช็คว่า username ซ้ำไหม
                 regAlert = new Alert(AlertType.ERROR);
                 regAlert.setTitle("Register Error");
                 regAlert.setHeaderText(null);
@@ -161,7 +161,7 @@ public class Controller implements Initializable {
 
             }
 
-            String dbUser = DatabaseForUser.getUser(con, 1);
+            String dbUser = DatabaseForUser.getUser(con, 1); //รับค่า username และ password ของ admin
             String dbPassword = DatabaseForUser.getPassword(con, 1);
             if (dbUser == null || dbPassword == null) {
                 regAlert = new Alert(AlertType.ERROR);
@@ -172,14 +172,14 @@ public class Controller implements Initializable {
                 return;
 
             }
-            if (UseradminRegister.getText().equals(dbUser) && passWAdminRegister.getText().equals(dbPassword)) {
+            if (UseradminRegister.getText().equals(dbUser) && passWAdminRegister.getText().equals(dbPassword)) { // เช็คว่า username และ password ของ admin ถูกต้องไหม ถ้าถูก ให้ทำการสร้างบัญชีใหม่
                 String[] user = new String[5];
                 user[0] = registerUser.getText();
                 user[1] = registerPassword.getText();
                 user[2] = question.getSelectionModel().getSelectedItem().toString();
                 user[3] = answer.getText();
                 user[4] = "Cashier";
-                DatabaseForUser.insert(con, user[0], user[1], user[2], user[3], user[4]);
+                DatabaseForUser.insert(con, user[0], user[1], user[2], user[3], user[4]); //insert ข้อมูลลง database
                 regAlert = new Alert(AlertType.INFORMATION);
                 regAlert.setTitle("Register Success");
                 regAlert.setHeaderText(null);
@@ -360,7 +360,7 @@ public class Controller implements Initializable {
 
 @FXML
     public void loginBotton() {
-        if (textFieldUsername.getText().isEmpty() || passwordfield.getText().isEmpty()) {
+        if (textFieldUsername.getText().isEmpty() || passwordfield.getText().isEmpty()) { // เช็ค username , password  ว่าว่างไหม
             alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
@@ -370,7 +370,7 @@ public class Controller implements Initializable {
         }
 
         try {
-            con = DatabaseConection.gC();
+            con = DatabaseConection.gC(); //เชื่อม Database 
             if (con == null) {
                 alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Database Error");
@@ -380,8 +380,8 @@ public class Controller implements Initializable {
                 return;
             }
 
-            if (DatabaseForUser.checkLogin(con, textFieldUsername.getText(),passwordfield.getText())) {
-                if(DatabaseForUser.checkEmployeeType(con, textFieldUsername.getText())){
+            if (DatabaseForUser.checkLogin(con, textFieldUsername.getText(),passwordfield.getText())) { //เช็ครหัส
+                if(DatabaseForUser.checkEmployeeType(con, textFieldUsername.getText())){ //เช็ค type ของ user ถ้าเป็น Addmin ให้โหลดเข้าหน้า ControlloerAdimin
                 alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information Message");
                 alert.setHeaderText(null);
@@ -399,7 +399,7 @@ public class Controller implements Initializable {
                 
                 Stage currenStage = (Stage)loginBotton.getScene().getWindow();
                 currenStage.close();
-                }else{
+                }else{ //กรณีที่ type ของ user ถ้าเป็น cashier ให้โหลดเข้าหน้า CashierLogin
                     username = textFieldUsername.getText();
 
                     alert = new Alert(AlertType.INFORMATION);
@@ -417,7 +417,7 @@ public class Controller implements Initializable {
                     stage.setScene(scene);
                     stage.show();
 
-                    Stage currenStage = (Stage)loginBotton.getScene().getWindow();
+                    Stage currenStage = (Stage)loginBotton.getScene().getWindow(); // หลังจากโหลดหน้า CashierLogin ให้ปิดหน้า Login
                     currenStage.close();
                 }
             } else {
@@ -435,7 +435,7 @@ public class Controller implements Initializable {
             alert.setContentText("An error occurred: " + e.getMessage());
             alert.showAndWait();
         } finally {
-            if (con != null) {
+            if (con != null) {  // ปิด connection ของ database
                 try {
                     con.close();
                 } catch (Exception e) {
@@ -445,9 +445,9 @@ public class Controller implements Initializable {
         }
     }
 
-    public void switchForm(ActionEvent event) {
+    public void switchForm(ActionEvent event) { // ฟังก์ชันนี้ใช้ในการสลับหน้า Login และ Register
 
-        TranslateTransition slider = new TranslateTransition();
+        TranslateTransition slider = new TranslateTransition(); // สำหรับเลื่อนหน้าจอ
 
         if (event.getSource() == createNewAccount) {
             slider.setNode(createForm);

@@ -1,20 +1,15 @@
 package com.project;
 
 import java.io.File;
-import java.net.URI;
 import java.net.URL;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import org.h2.engine.Database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +23,7 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -35,7 +31,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -190,7 +185,7 @@ public class ControllerAdmin implements Initializable{
                 ResultSet rs = ppsm.executeQuery()){
                     if(rs.next()){
                         int n = rs.getInt(1);
-                        dashboandCustomer.setText(String.valueOf(n));
+                        dashboandCustomer.setText(String.valueOf(n)); //เซ็ต lebel แสดงจำนวนใบเสร็จ จาก database
                     }
             }
         }catch(SQLException e){
@@ -210,7 +205,7 @@ public class ControllerAdmin implements Initializable{
             
             if(rs.next()) {
                 double total = rs.getDouble(1);
-                dashboandTotalIncome.setText(String.format("$%.2f", total));
+                dashboandTotalIncome.setText(String.format("$%.2f", total)); //เซ็ต lebel แสดงรายได้รวมจาก database
             }
         } catch(SQLException e) {
             e.printStackTrace();
@@ -225,7 +220,7 @@ public class ControllerAdmin implements Initializable{
             
             if(rs.next()) {
                 double todayIncome = rs.getDouble(1);
-                dashboandIncome.setText(String.format("$%.2f", todayIncome));
+                dashboandIncome.setText(String.format("$%.2f", todayIncome)); //เซ็ต lebel แสดงรายได้วันนี้จาก database
             }
         } catch(SQLException e) {
             e.printStackTrace();
@@ -238,7 +233,7 @@ public class ControllerAdmin implements Initializable{
             PreparedStatement ppsm = con.prepareStatement(sql);
             ResultSet rs = ppsm.executeQuery()){
                 
-                XYChart.Series chart = new XYChart.Series();
+                XYChart.Series chart = new XYChart.Series();    //การเซ็ตข้อมูลในกราฟ
                 chart.setName("Customer Count");
 
                 while(rs.next()){
@@ -248,7 +243,7 @@ public class ControllerAdmin implements Initializable{
                     ));
                 }
 
-                dashboandCustomerChart.getData().clear();
+                dashboandCustomerChart.getData().clear(); //เคลียร์ข้อมูลในกราฟก่อน ก่อนที่จะเซ็ตข้อมูลใหม่
                 dashboandCustomerChart.getData().add(chart);
                 
             }catch(SQLException e){
@@ -270,7 +265,7 @@ public class ControllerAdmin implements Initializable{
                 chart.setName("Daily Income");
 
                 while(rs.next()){
-                    chart.getData().add(new XYChart.Data<>(
+                    chart.getData().add(new XYChart.Data<>( //การเซ็ตข้อมูลในกราฟของรายได้ในวันที่ต่างๆ
                         rs.getDate("DATE").toString(),
                         rs.getDouble("daily_income")
                     ));
@@ -288,7 +283,7 @@ public class ControllerAdmin implements Initializable{
             }
     }
 
-    public void switchForm(ActionEvent event){
+    public void switchForm(ActionEvent event){ //เปลี่ยนหน้า ต่างๆตามปุ่มที่กด
         if(event.getSource() == dashboand){
             dashBoandForm.setVisible(true);
             inventoryForm.setVisible(false);
@@ -304,7 +299,7 @@ public class ControllerAdmin implements Initializable{
         }
     }
 
-    public void inventoryUpdateBtn(){
+    public void inventoryUpdateBtn(){   //สำหรับอัพเดตข้อมูลปัจจุบันในตาราง
         if(idProduct.getText().isEmpty() || productName.getText().isEmpty()
         || stockProduct.getText().isEmpty() || priceProduct.getText().isEmpty() 
         || typeProduct.getSelectionModel().getSelectedItem() == null 
@@ -325,7 +320,7 @@ public class ControllerAdmin implements Initializable{
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("ERROR MESSAGE");
                     alert.setHeaderText(null);
-                    alert.setContentText(idProduct.getText() + " does not exist");  // แก้ข้อความให้เหมาะสม
+                    alert.setContentText(idProduct.getText() + " does not exist");
                     alert.showAndWait();
                     return;
                 }
@@ -337,7 +332,7 @@ public class ControllerAdmin implements Initializable{
                     alert.showAndWait();
                     return;
                 }else{
-                    DatabaseForMenu.updateMenu(con, 
+                    DatabaseForMenu.updateMenu(con,     //โค้ดสำหรับอัพเดตข้อมูลใน database
                     idProduct.getText(),
                     productName.getText(),
                     typeProduct.getSelectionModel().getSelectedItem(),
@@ -353,8 +348,8 @@ public class ControllerAdmin implements Initializable{
                 alert.setContentText("Successfully updated");
                 alert.showAndWait();
 
-                inventoryShowData();
-                clearForm();
+                inventoryShowData(); //แสดงข้อมูลในตารางหลังจากอัพเดต
+                clearForm(); //เคลียร์ข้อมูลในช่องต่างๆ
                 }
             }catch(SQLException e){
                 e.printStackTrace();
@@ -362,7 +357,7 @@ public class ControllerAdmin implements Initializable{
         }
     }
 
-    public void inventoryDeleteBtn(){
+    public void inventoryDeleteBtn(){   //ลบข้อมูลในตาราง
         if(idProduct.getText().isEmpty()){
             alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error");
@@ -372,7 +367,7 @@ public class ControllerAdmin implements Initializable{
         }
         
         try(Connection con = DatabaseConection.gC()){
-            if(!DatabaseForMenu.checkProduct(con, idProduct.getText())){
+            if(!DatabaseForMenu.checkProduct(con, idProduct.getText())){ //ดึงข้อมูลจาก textfield idProduct เพิ้อไปเช็คใน database 
             alert = new Alert(AlertType.ERROR);
             alert.setTitle("ERROR MESSAGE");
             alert.setHeaderText(null);
@@ -388,7 +383,7 @@ public class ControllerAdmin implements Initializable{
             Optional<ButtonType> option = alert.showAndWait();
 
             if(option.get().equals(ButtonType.OK)) {
-            DatabaseForMenu.deleteMenu(con, idProduct.getText());
+            DatabaseForMenu.deleteMenu(con, idProduct.getText()); //ลบข้อมูลใน database
                 
             alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("SUCCESS MESSAGE");
@@ -396,7 +391,7 @@ public class ControllerAdmin implements Initializable{
             alert.setContentText("Successfully deleted");
             alert.showAndWait();
 
-            inventoryShowData();
+            inventoryShowData(); //แสดงข้อมูลในตารางหลังจากลบ
             clearForm();
             }
         }catch(SQLException e){
@@ -404,7 +399,7 @@ public class ControllerAdmin implements Initializable{
          } 
     }
 
-    public void inventoryAddBtn(){
+    public void inventoryAddBtn(){ //สำหรับเพิ่มข้อมูลในตาราง
         if(idProduct.getText().isEmpty() || productName.getText().isEmpty()
         || stockProduct.getText().isEmpty() || priceProduct.getText().isEmpty() 
         || typeProduct.getSelectionModel().getSelectedItem() == null 
@@ -417,8 +412,8 @@ public class ControllerAdmin implements Initializable{
             alert.showAndWait();
         }else{
 
-            try(Connection con = DatabaseConection.gC()){
-                if(DatabaseForMenu.checkProduct(con, idProduct.getText())){
+            try(Connection con = DatabaseConection.gC()){ 
+                if(DatabaseForMenu.checkProduct(con, idProduct.getText())){ //เช็คว่า idProduct ที่กรอกไปมีอยู่ใน database หรือไม่
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("ERROR MESSAGE");
                     alert.setHeaderText(null);
@@ -429,13 +424,13 @@ public class ControllerAdmin implements Initializable{
                     Double price = Double.parseDouble(priceProduct.getText());
                     Integer stock = Integer.parseInt(stockProduct.getText());
 
-                    if(price <= 0 || stock <= 0){
+                    if(price <= 0 || stock <= 0){ //เช็คว่า price และ stock ที่กรอกไปมีค่ามากกว่า 0 หรือไม่
                         alert = new Alert(AlertType.ERROR);
                         alert.setTitle("ERROR MESSAGE");
                         alert.setHeaderText(null);
                         alert.setContentText("Price and Stock must be greater than 0");
                         alert.showAndWait();
-                    }else{
+                    }else{ //ถ้าผ่านการเช็คทั้งหมดให้ทำการเพิ่มข้อมูลใน database
                     
                 DatabaseForMenu.insert(con, idProduct.getText(), productName.getText()
                                         , typeProduct.getSelectionModel().getSelectedItem()
@@ -498,7 +493,7 @@ public class ControllerAdmin implements Initializable{
 
     private ObservableList<CustomerData> customerListData;
 
-    public void customersShowData(){
+    public void customersShowData(){ // เซ็ตข้อมูลในหน้า customer ให้แสดงในตาราง โดยเรียกใช้ method customerList() เพื่อดึงข้อมูลจาก database
         customerListData = customerList();
 
         columnCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
@@ -527,7 +522,7 @@ public class ControllerAdmin implements Initializable{
     }
 
     public ObservableList<ProductData> inventoryDataList() {
-        ObservableList<ProductData> productData = FXCollections.observableArrayList();
+        ObservableList<ProductData> productData = FXCollections.observableArrayList(); //การเซ็ตข้อมูลในตาราง และส่งกลับไปยัง method inventoryShowData()
         String sql = "SELECT * FROM MENU";
         
         try (Connection con = DatabaseConection.gC();
@@ -567,7 +562,7 @@ public class ControllerAdmin implements Initializable{
     private ObservableList<ProductData> inventoryListData;
 
     public void inventoryShowData(){
-        inventoryListData = inventoryDataList();
+        inventoryListData = inventoryDataList(); //แสดงข้อมูลตาม column
   
         inventoryCol_IdProduct.setCellValueFactory(new PropertyValueFactory<>("productId"));
         inventoryCol_ProductName.setCellValueFactory(new PropertyValueFactory<>("productName"));
@@ -580,12 +575,12 @@ public class ControllerAdmin implements Initializable{
         inventoryTable.setItems(inventoryListData);
     }
 
-    public void inventorySelectData(){
+    public void inventorySelectData(){ //คลิกที่ข้อมูลในตารางเพื่อให้แสดงในช่องต่างๆ
 
         ProductData product = inventoryTable.getSelectionModel().getSelectedItem();
         int n = inventoryTable.getSelectionModel().getSelectedIndex();
 
-        if((n-1) < -1) return;
+        if((n-1) < -1) return;  //ป้องกัน NullPointerException กรณีที่ไม่มีการเลือกข้อมูลในตาราง
         idProduct.setText(product.getProductId());
         productName.setText(product.getProductName());
         typeProduct.setValue(product.getType());
@@ -653,7 +648,7 @@ public class ControllerAdmin implements Initializable{
         }
     }
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources){ //เซ็ตข้อมูลที่ต้องแสดงในตาราง และเซ็ตข้อมูลในช่องต่างๆ
         inventoryTypeList();
         inventoryStatus();
         inventoryShowData();

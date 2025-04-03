@@ -2140,3 +2140,12 @@ ALTER TABLE RECEIPT ADD CONSTRAINT FK_CUSTOMER FOREIGN KEY (CUSTOMER_ID) REFEREN
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1149)
+2025-04-03 19:30:08.050669+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE MENU [*]AUTO_INCREMENT = 1"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE MENU AUTO_INCREMENT = 1 [42001-224]
+2025-04-03 19:30:08.056647+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE RECEIPT [*]AUTO_INCREMENT = 1"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE RECEIPT AUTO_INCREMENT = 1 [42001-224]
+2025-04-03 19:30:08.065652+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE CUSTOMER [*]AUTO_INCREMENT = 1"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE CUSTOMER AUTO_INCREMENT = 1 [42001-224]

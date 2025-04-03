@@ -5,12 +5,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.stage.*;
-import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class MainApp extends Application{
     public static void main(String[] args){ 
@@ -18,6 +16,7 @@ public class MainApp extends Application{
         try(Connection con = DatabaseConection.gC()){
         if (con != null) {
             System.out.println("Database connected successfully!");
+
             DatabaseForUser.getInformation(con);
             DatabaseForReceipt.getInformation(con);
             DatabaseForCustomer.getInformation(con);

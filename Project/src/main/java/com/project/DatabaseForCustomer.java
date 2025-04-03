@@ -1,6 +1,10 @@
 package com.project;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseForCustomer {
     public static void createTable(Connection con){
@@ -107,6 +111,23 @@ public class DatabaseForCustomer {
                     System.out.println("=====================");
                 }
         } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void resetDatabase(Connection con) {
+        String deleteDataSQL = "DELETE FROM CUSTOMER"; 
+        String resetAutoIncrementSQL = "ALTER TABLE CUSTOMER AUTO_INCREMENT = 1"; 
+        
+        try (Statement stm = con.createStatement()) {
+            // ลบข้อมูลทั้งหมด
+            stm.executeUpdate(deleteDataSQL);
+            System.out.println("All data deleted successfully");
+        
+            // รีเซ็ตค่า AUTO_INCREMENT
+            stm.executeUpdate(resetAutoIncrementSQL);
+            System.out.println("AUTO_INCREMENT reset successfully");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

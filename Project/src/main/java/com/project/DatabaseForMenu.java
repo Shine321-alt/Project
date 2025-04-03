@@ -1,6 +1,11 @@
 package com.project;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseForMenu {
     public static void createTable(Connection con){
@@ -51,7 +56,7 @@ public class DatabaseForMenu {
         }catch(SQLException e){e.printStackTrace();}
     }
 
-    public static void updateMenu(Connection conn, String productId,
+    public static void updateMenu(Connection conn, String productId,        //อัพเดตข้อมูลในฐานข้อมูล
                                  String productName, String type
                                 , int stock, double price
                                 , String status, String image, Date date) {
@@ -63,9 +68,9 @@ public class DatabaseForMenu {
             pstm.setString(2, type);
             pstm.setInt(3, stock);
             pstm.setDouble(4, price);
-            pstm.setString(5, stock == 0 ? "unavailable" : "available");
+            pstm.setString(5, stock == 0 ? "unavailable" : "available"); // ถ้าเป็นจริงให้เปลี่ยนเป็น unavailable
             pstm.setString(6, image);
-            pstm.setDate(7, date != null ? date : new Date(System.currentTimeMillis()));
+            pstm.setDate(7, date != null ? date : new Date(System.currentTimeMillis())); // ใช้วันที่ปัจจุบันถ้า date เป็น null
             pstm.setString(8, productId);
 
             if (pstm.executeUpdate() > 0) {
@@ -110,7 +115,7 @@ public class DatabaseForMenu {
         }
     }
 
-    public static void deleteMenu(Connection con , String productId) {
+    public static void deleteMenu(Connection con , String productId) { //ลบข้อมูลในฐานข้อมูล
         String sql = "DELETE FROM MENU WHERE PRODUCT_ID = ?";
         try(PreparedStatement pstm = con.prepareStatement(sql)){
             pstm.setString(1, productId);
@@ -136,7 +141,7 @@ public class DatabaseForMenu {
             }catch(SQLException e){e.printStackTrace();}
     }
 
-    public static boolean checkProduct(Connection con, String productId) {
+    public static boolean checkProduct(Connection con, String productId) { //เช็คว่าในฐานข้อมูลมีสินค้าอยู่ไหม
         String sql = "SELECT PRODUCT_ID FROM MENU WHERE PRODUCT_ID = ?";
         try (PreparedStatement ppsm = con.prepareStatement(sql)) {
             ppsm.setString(1, productId);
@@ -180,5 +185,23 @@ public class DatabaseForMenu {
         }
         return false;
     }
+
+    public static void resetDatabase(Connection con) {
+        String deleteDataSQL = "DELETE FROM MENU"; 
+        String resetAutoIncrementSQL = "ALTER TABLE MENU AUTO_INCREMENT = 1"; 
+        
+        try (Statement stm = con.createStatement()) {
+            // ลบข้อมูลทั้งหมด
+            stm.executeUpdate(deleteDataSQL);
+            System.out.println("All data deleted successfully");
+        
+            // รีเซ็ตค่า AUTO_INCREMENT
+            stm.executeUpdate(resetAutoIncrementSQL);
+            System.out.println("AUTO_INCREMENT reset successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
